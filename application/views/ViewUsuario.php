@@ -127,7 +127,7 @@
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             
-            <div id="dvConfirm" class="modal fade" tabindex="-1" role="dialog">
+            <div id="dvConfirm" class="modal modal-lg fade" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -274,25 +274,6 @@
             //Actualizamos la tabla
             reload();
         });
-        
-        /*
-        if(confirm("¿Desea eliminar el usuario actual?")){
-            
-            //Armamos la trama del Post
-            var url = "<?php //echo site_url('usuario/eliminar')?>/" + id;
-            var data = "";
-            
-            //Enviamos los datos por POST
-            $.post(url, data, function (objJson){
-                
-                //alert(objJson.mensaje);
-                $("#dvAlert").modal("show");
-                $("#pMensaje").html(objJson.mensaje);
-            }, 'json');
-            
-            //Actualizamos la tabla
-            reload();
-        }*/
     }
     
     function restore_pass(id){
@@ -317,22 +298,6 @@
                 
             }, 'json');
         });
-        /*
-        if(confirm("¿Desea reestablecer la clave del usuario actual?")){
-            
-            //Armamos la trama del Post
-            var url = "<?php //echo site_url('usuario/reestablecer')?>/" + id;
-            var data = "";
-            
-            //Enviamos los datos por POST
-            $.post(url, data, function (objJson){
-                
-                //alert("Su nueva clave es: " + objJson.mensaje);
-                $("#dvAlert").modal("show");
-                $("#pMensaje").html(objJson.mensaje);
-            }, 'json');
-            
-        }*/
     }
     
     function reload(){
