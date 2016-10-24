@@ -65,11 +65,63 @@
         <!-- Begin page content -->
         <div class="container" id="dvContainer">
             <div class="page-header">
-                <h1>Bienvenidos</h1>
+                <h1>Registra tu hora</h1>
                 
             </div>
-            
+            <div class="col-lg-12">
+                <div id="clock" class="dark">
+                    <div class="display">
+                        <div class="weekdays"></div>
+                        <div class="ampm"></div>
+                        <div class="alarm"></div>
+                        <div class="digits"></div>
+                    </div>
+                </div>
+                <div class="button-holder">
+                    <a href="javascript:registrar(1);" class="buttonhi" data-toggle="tooltip" data-placement="bottom" title="Hora de ingreso">HI</a>
+                    <a href="javascript:registrar(2);" class="buttonrs" data-toggle="tooltip" data-placement="bottom" title="Salida a refrigerio">RS</a>
+                    <a href="javascript:registrar(3);" class="buttonri" data-toggle="tooltip" data-placement="bottom" title="Regreso de refrigerio">RI</a>
+                    <a href="javascript:registrar(4);" class="buttonhs" data-toggle="tooltip" data-placement="bottom" title="Hora de salida">HS</a>
+                </div>
+            </div>
         </div>
+        
+        <span hidden="hidden" id="base_url"><?php echo site_url() ?></span>
+        
+        <div id="dvConfirm" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Aviso</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="pMensajeConfirm"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button id="btnConfirm" type="button" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            
+        <div id="dvAlert" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Mensaje</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="pMensaje"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
         
         <footer class="footer">
             <div class="container">
@@ -114,9 +166,57 @@
                 $("#dvContainer").load(pagina);
             }
             
-            //Para insertar la hora
-            function registrarHora(tipo){
+            function registrar(tipo){
                 
+                //Declaramos variables
+                var v_TipoRegistro = "";
+                var v_TipoMensaje = "";
+                
+                switch(tipo){
+                    
+                    case 1:
+                        v_TipoRegistro = "hi";
+                        v_TipoMensaje = "¿Desea registrar su hora de entrada?";
+                        break;
+                    case 2:
+                        v_TipoRegistro = "rs";
+                        v_TipoMensaje = "¿Desea registrar su salida a refrigerio?";
+                        break;
+                    case 3:
+                        v_TipoRegistro = "ri";
+                        v_TipoMensaje = "¿Desea registrar su retorno de refrigerio?";
+                        break;
+                    case 4:
+                        v_TipoRegistro = "hs";
+                        v_TipoMensaje = "¿Desea registrar su hora de salida?";
+                        break;
+                }
+                
+                //Abrimos el modal de confirmacion
+                $("#dvConfirm").modal("show");
+                $("#pMensajeConfirm").text(v_TipoMensaje);
+                
+                //Si el usuario es si
+                //$("#btnConfirm").click(function (e){
+                $('#btnConfirm').unbind('click').bind('click', function (e) {
+                    
+                    //Evitamos que haga el submit
+                    e.preventDefault();
+                    
+                    //Armamos la trama
+                    var data = "";
+                    var url = "<?php echo base_url('asistencia/registrarHora'); ?>/"+ v_TipoRegistro;
+                    
+                    alert(url);
+                    /*
+                    //Enviamos los datos por POST
+                    $.post(url, data, function (objJson){
+
+                        $("#dvConfirm").modal("hide");
+                        $("#dvAlert").modal("show");
+                        $("#pMensaje").html(objJson.mensaje);
+                    }, 'json');*/
+                });
             }
         </script>
     </body>

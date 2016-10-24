@@ -1,5 +1,5 @@
 $(function(){
-    
+
     // Cache some selectors
 
     var clock = $('#clock'),
@@ -97,5 +97,4 @@ $(function(){
             setTimeout(update_time, 1000);
 
     })();
-
 });

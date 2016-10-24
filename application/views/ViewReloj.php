@@ -1,25 +1,3 @@
-            <div class="row">
-                <div class="page-header">
-                    <h1>Registra tu hora</h1>
-                </div>
-                <div class="col-lg-12">
-                    <div id="clock" class="dark">
-                        <div class="display">
-                            <div class="weekdays"></div>
-                            <div class="ampm"></div>
-                            <div class="alarm"></div>
-                            <div class="digits"></div>
-                        </div>
-                    </div>
-                    <div class="button-holder">
-                        <a id="btnHi" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Hora de ingreso">HI</a>
-                        <a id="btnRs" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Salida a refrigerio">RS</a>
-                        <a id="btnRi" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Regreso de refrigerio">RI</a>
-                        <a id="btnHs" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Hora de salida">HS</a>
-                    </div>
-                </div>
-            </div>
-
             <div id="dvConfirm" class="modal fade" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -54,6 +32,3 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-            
-            
-            
