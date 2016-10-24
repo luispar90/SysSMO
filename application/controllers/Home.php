@@ -40,10 +40,6 @@ class Home extends CI_Controller{
         $this->load->view('ViewAsistencia');
     }
     
-    public function verReloj() {
-        $this->load->view('ViewReloj');
-    }
-    
     public function test() {
         echo strtoupper($this->session->userdata('remember_ss'));
     }
