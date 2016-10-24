@@ -44,7 +44,7 @@ class Asistencia extends CI_Controller{
 
             if($result > 0){
                 
-                $output = array("status" => TRUE, "msj" => "Hora registrada correctamente");
+                $output = array("status" => TRUE, "mensaje" => "Hora registrada correctamente");
 
                 
             }else{
@@ -52,7 +52,7 @@ class Asistencia extends CI_Controller{
             }
         } catch (Exception $ex) {
 
-            $output = array("status" => FALSE, "msj" => $ex->getMessage());
+            $output = array("status" => FALSE, "mensaje" => $ex->getMessage());
         }
         
         echo json_encode($output);
