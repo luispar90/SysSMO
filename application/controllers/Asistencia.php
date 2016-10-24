@@ -41,7 +41,7 @@ class Asistencia extends CI_Controller{
             
             //Ejecutamos la consulta
             $result = $this->ModelAsistencia->insertAsistencia($asistencia);
-            
+            echo $result;exit();
             if($result > 0){
                 
                 $output = array("status" => TRUE, "msj" => "Hora registrada correctamente");

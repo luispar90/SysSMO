@@ -30,9 +30,9 @@ class EAsistencia {
                 $this->codigo_emp = $data['codigo_emp'];
                 $this->usu_emp = $data['usu_emp'];
                 $this->tipo = $data['tipo'];
-                $this->fecha = $data['fecha'];
-                $this->hora = $data['hora'];
-                $this->estado = $data['estado'];
+                //$this->fecha = $data['fecha'];
+                //$this->hora = $data['hora'];
+                //$this->estado = $data['estado'];
                 $this->ip = $data['ip'];
             }
         }

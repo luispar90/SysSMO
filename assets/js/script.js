@@ -105,27 +105,17 @@ $(function(){
         $("#pMensajeConfirm").text("¿Desea registrar su hora de ingreso?");
         
         $("#btnDvConfirm").click(function (e){
-            
-            var base_url = $('#base_url').text();
+
             var tipo = 'hi';
-            var time = moment().format("hhmmssA");
-            $.ajax({
-                url: base_url + 'asistencia/registrarHora/' + tipo + '/' + time,
-                /*type: 'post',
-                data: parametros,*/
-                dataType: 'json',
-                success: function(res)
-                {
-                    if(res.status)
-                    {
-                        $("#dvConfirm").modal("hide");
-                        $("#dvAlert").modal("show");
-                        $("#pMensaje").html(res.msj);
-                    }
-                }
+            var data = null;
+            var url = $('#base_url').text() + 'asistencia/registrarHora/' + tipo;
+            $.post(url, data, function (objJson){
+                
+                $("#dvConfirm").modal("hide");
+                $("#dvAlert").modal("show");
+                $("#pMensaje").html(objJson.msj);
             });
         });
-        
     });
     
     $('a.buttonrs').click(function(){
