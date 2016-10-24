@@ -32,21 +32,21 @@ class ModelAsistencia extends CI_Model implements IEntitieAsistencia{
     public function insertAsistencia(\EAsistencia $asist) {
         
         //Armamos la data
-        $data = array(
-            'EMPLC_CODIGO' => $asist->codigo_emp,
-            'ATTEV_USU_EMP' => $asist->usu_emp,
-            'ATTEC_TIPO_HORA' => $asist->tipo,
-            'ATTED_FECHA' => $asist->fecha,
-            'ATTED_HORA' => $asist->hora,
-            'ATTEC_ESTADO' => $asist->estado,
-            'ATTEV_IP' => $asist->ip
+        $data = array('p_CodEmpleado' => $asist->codigo_emp, 'p_Usuario' => $asist->usu_emp, 
+                        'p_TipoHora' => $asist->tipo,'p_IP' => $asist->ip
         );
+        
+        //Armamos la query
+        $query = "call spi_InsertarAsistencia(?, ?, ?, ?)";
         
         try{
             
+            //Abrimos la conexion
             $this->db->reconnect();
+            
+            //Iniciamos la transaccion
             $this->db->trans_begin();
-            $this->db->insert($this->tabla, $data);
+            $this->db->query($query, $data);
             $this->db->trans_commit();
             
         }catch (Exception $ex){
