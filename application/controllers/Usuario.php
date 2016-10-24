@@ -335,4 +335,5 @@ class Usuario extends CI_Controller {
                 header("Content-Disposition: attachment; filename=\"$filename\"");
         $excel->exportExcelData($dataToExports);
     }
+    
 }

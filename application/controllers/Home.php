@@ -40,7 +40,7 @@ class Home extends CI_Controller{
         $this->load->view('ViewAsistencia');
     }
     
-    public function test() {
-        echo strtoupper($this->session->userdata('remember_ss'));
+    public function inicio() {
+        redirect('home/index');
     }
 }

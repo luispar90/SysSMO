@@ -35,8 +35,7 @@ class ModelAsistencia extends CI_Model implements IEntitieAsistencia{
         $data = array('p_CodEmpleado' => $asist->__get("codigo_emp"), 'p_Usuario' => $asist->__get("usu_emp"), 
                         'p_TipoHora' => $asist->__get("tipo"), 'p_IP' => $asist->__get("ip")
         );
-        echo $asist->__get("ip")."<br>";
-        print_r($data); exit();
+
         //Armamos la query
         $query = "call spi_InsertarAsistencia(?, ?, ?, ?)";
         
