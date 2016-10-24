@@ -1,5 +1,5 @@
 $(function(){
-
+    
     // Cache some selectors
 
     var clock = $('#clock'),
@@ -98,86 +98,4 @@ $(function(){
 
     })();
 
-    $('a.buttonhi').click(function(){
-        
-        var tipo = 'hi';
-        $("#dvConfirm").modal("show");
-        $("#btnDvConfirm").text("Registrar");
-        $("#pMensajeConfirm").text("¿Desea registrar su hora de ingreso?");
-        
-        $("#btnDvConfirm").click(function (e){
-
-            var data = null;
-            var url = $('#base_url').text() + 'asistencia/registrarHora/' + tipo;
-            $.post(url, data, function (objJson){
-                
-                $("#dvConfirm").modal("hide");
-                $("#dvAlert").modal("show");
-                $("#pMensaje").html(objJson.msj);
-            });
-        }, 'json');
-    });
-    
-    $('a.buttonrs').click(function(){
-        
-        var tipo = 'rs';
-        $("#dvConfirm").modal("show");
-        $("#btnDvConfirm").text("Registrar");
-        $("#pMensajeConfirm").text("¿Desea registrar su salida al refrigerio?");
-        
-        $("#btnDvConfirm").click(function (e){
-
-            var data = null;
-            var url = $('#base_url').text() + 'asistencia/registrarHora/' + tipo;
-            $.post(url, data, function (objJson){
-                
-                $("#dvConfirm").modal("hide");
-                $("#dvAlert").modal("show");
-                $("#pMensaje").html(objJson.msj);
-            });
-        }, 'json');
-    });
-    
-    $('a.buttonri').click(function(){
-        
-        var tipo = 'ri';
-        $("#dvConfirm").modal("show");
-        $("#btnDvConfirm").text("Registrar");
-        $("#pMensajeConfirm").text("¿Desea registrar su hora de regreso de refrigerio?");
-        
-        $("#btnDvConfirm").click(function (e){
-
-            var data = null;
-            var url = $('#base_url').text() + 'asistencia/registrarHora/' + tipo;
-            $.post(url, data, function (objJson){
-                
-                $("#dvConfirm").modal("hide");
-                $("#dvAlert").modal("show");
-                $("#pMensaje").html(objJson.msj);
-            });
-        }, 'json');
-        
-        
-    });
-    
-    $('a.buttonhs').click(function(){
-       
-        var tipo = 'hs';
-        $("#dvConfirm").modal("show");
-        $("#btnDvConfirm").text("Registrar");
-        $("#pMensajeConfirm").text("¿Desea registrar su hora de salida?");
-        
-        $("#btnDvConfirm").click(function (e){
-
-            var data = null;
-            var url = $('#base_url').text() + 'asistencia/registrarHora/' + tipo;
-            $.post(url, data, function (objJson){
-                
-                $("#dvConfirm").modal("hide");
-                $("#dvAlert").modal("show");
-                $("#pMensaje").html(objJson.msj);
-            });
-        }, 'json');
-        
-    });
 });

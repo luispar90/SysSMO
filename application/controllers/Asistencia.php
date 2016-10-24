@@ -45,6 +45,7 @@ class Asistencia extends CI_Controller{
             if($result > 0){
                 
                 $output = array("status" => TRUE, "msj" => "Hora registrada correctamente");
+
                 
             }else{
                 throw new Exception("Ocurrió un error al registrar la hora");
