@@ -22,24 +22,16 @@ class Asistencia extends CI_Controller{
 	$this->load->model('ModelAsistencia');
     }
     
-    public function registrarHora($tipo, $tiempo) {
+    public function registrarHora($tipo) {
         
         //Declaramos variables
         $output = array();
-        
-        //Capturamos los datos
-        $hora = trim(substr($tiempo, 0, 2));
-        $minuto = trim(substr($tiempo, 2, 2));
-        $segundo = trim(substr($tiempo, 4, 2));
         
         //Armamos la data
         $data = array(
             'codigo_emp' => $this->session->userdata('codigo_ss'),
             'usu_emp' => $this->session->userdata('usuario_ss'),
             'tipo' => trim($tipo),
-            'fecha' => date("Y-m-d H:i:s"),
-            'hora' => $hora . ':' . $minuto . ':' . $segundo,
-            'estado' => 1,
             'ip' => $this->get_client_ip()
         );
 
