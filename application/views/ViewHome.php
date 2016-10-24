@@ -206,16 +206,14 @@
                     //Armamos la trama
                     var data = "";
                     var url = "<?php echo base_url('asistencia/registrarHora'); ?>/"+ v_TipoRegistro;
-                    
-                    alert(url);
-                    /*
+
                     //Enviamos los datos por POST
                     $.post(url, data, function (objJson){
 
                         $("#dvConfirm").modal("hide");
                         $("#dvAlert").modal("show");
                         $("#pMensaje").html(objJson.mensaje);
-                    }, 'json');*/
+                    }, 'json');
                 });
             }
         </script>
