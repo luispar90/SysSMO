@@ -26,7 +26,7 @@ class Asistencia extends CI_Controller{
         
         //Declaramos variables
         $output = array();
-        
+
         //Armamos la data
         $data = array(
             'codigo_emp' => $this->session->userdata('codigo_ss'),
@@ -38,7 +38,7 @@ class Asistencia extends CI_Controller{
         try{
             //Instanciamos una clase EAsistencia
             $asistencia = new EAsistencia($data);
-            
+
             //Ejecutamos la consulta
             $result = $this->ModelAsistencia->insertAsistencia($asistencia);
 

@@ -253,37 +253,24 @@ class Usuario extends CI_Controller {
     
     public function login() {
         
-        //Capturamos todas las sesiones
-        $session_set_value = $this->session->all_userdata();
+        //Capturamos los datos
+        $username = $this->input->post("txtUsuario");
+        $password = $this->input->post("txtClave");
 
-        // Check for remember_me data in retrieved session data
-        if (isset($session_set_value['remember_me']) && $session_set_value['remember_me'] == "1") {
+        // check for user credentials
+        $uresult = $this->ModelUsuario->get_User($username, $password);
+
+        if (count($uresult) > 0){
+
+            //set session (Case sensitive)
+            $sess_data = array('login' => TRUE, 'codigo_ss' => $uresult[0]->CODIGO, 'usuario_ss' => $uresult[0]->USUARIO);
+            $this->session->set_userdata($sess_data);
             redirect("home/home");
-            
-        } else {
-            
-            //Capturamos los datos
-            $username = $this->input->post("txtUsuario");
-            $password = $this->input->post("txtClave");
-            $remember = $this->input->post('chkRememberMe');
-            
-            // check for user credentials
-            $uresult = $this->ModelUsuario->get_User($username, $password);
-
-            if (count($uresult) > 0){
                 
-                ($remember) ? $session = TRUE : $session = FALSE;
-                    
-                //set session (Case sensitive)
-                $sess_data = array('login' => TRUE, 'codigo_ss' => $uresult[0]->CODIGO, 'usuario_ss' => $uresult[0]->USUARIO, 'remember_ss' => $session);
-                $this->session->set_userdata($sess_data);
-                redirect("home/home");
-                
-            }else{
+        }else{
 
-                $this->session->set_flashdata('msg', 'Usuario y/o clave incorrectos');
-                redirect('home/index');
-            }
+            $this->session->set_flashdata('msg', 'Usuario y/o clave incorrectos');
+            redirect('home/index');
         }
     }
     

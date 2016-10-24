@@ -29,13 +29,14 @@ class ModelAsistencia extends CI_Model implements IEntitieAsistencia{
         parent::__construct();
     }
     
-    public function insertAsistencia(\EAsistencia $asist) {
+    public function insertAsistencia(EAsistencia $asist) {
         
         //Armamos la data
-        $data = array('p_CodEmpleado' => $asist->codigo_emp, 'p_Usuario' => $asist->usu_emp, 
-                        'p_TipoHora' => $asist->tipo,'p_IP' => $asist->ip
+        $data = array('p_CodEmpleado' => $asist->__get("codigo_emp"), 'p_Usuario' => $asist->__get("usu_emp"), 
+                        'p_TipoHora' => $asist->__get("tipo"), 'p_IP' => $asist->__get("ip")
         );
-        
+        echo $asist->__get("ip")."<br>";
+        print_r($data); exit();
         //Armamos la query
         $query = "call spi_InsertarAsistencia(?, ?, ?, ?)";
         
