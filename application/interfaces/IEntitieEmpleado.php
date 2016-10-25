@@ -10,6 +10,9 @@
  *
  * @author lparagua
  */
+
+require_once '/../entities/EEmpleado.php';
+
 interface IEntitieEmpleado {
     //put your code here
     function insert_Employee(EEmpleado $empleado);
