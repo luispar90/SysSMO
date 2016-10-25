@@ -48,7 +48,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
+                                <li><a href="javascript:cargarPagina('verEmpleados')">Empleados</a></li>
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="javascript:cargarPagina('perfil')">Pefil</a></li>
                                 <li role="separator" class="divider"></li>

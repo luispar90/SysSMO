@@ -40,6 +40,10 @@ class Home extends CI_Controller{
         $this->load->view('ViewAsistencia');
     }
     
+    public function verEmpleados() {
+        $this->load->view('ViewEmpleado');
+    }
+    
     public function inicio() {
         redirect('home/index');
     }

@@ -8,7 +8,7 @@
                 <br>
                 <br>
                 <div class="table-responsive">
-                    <table id="tbAsistencia" class="table table-hover">
+                    <table id="tbAsistencia" class="table table-hover table-striped">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 90px;">ID registro</th>
@@ -25,10 +25,10 @@
                         <tfoot>
                             <tr>
                                 <th class="text-center">ID registro</th>
-                                <th class="text-center">Código de empleado</th>
+                                <th class="text-center">Código empleado</th>
                                 <th class="text-center">Usuario</th>
                                 <th class="text-center">Fecha</th>
-                                <th class="text-center">Tipo de registro</th>
+                                <th class="text-center">Tipo registro</th>
                                 <th class="text-center">Hora</th>
                                 <th class="text-center">Estado</th>
                             </tr>
