@@ -279,10 +279,12 @@
             
             //Validar el formulario
             e.preventDefault();
-
+            var data = new FormData();
             //Armamos la trama del Post
             var url = "<?php echo site_url('empleado/insertar') ?>";
-            var data = $("#frmAddEmp").serialize();
+            //var data = $("#frmAddEmp").serialize();
+            //data.append('file', $('#fileCV').files[0]);
+            data.append('file', $('#fileCV'));
             alert(data);
             return;
             $.post(url, data, function(objJson) {
