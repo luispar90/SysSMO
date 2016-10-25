@@ -12,7 +12,11 @@
  */
 interface IEntitieEmpleado {
     //put your code here
+    function insert_Employee(EEmpleado $empleado);
+    function update_Employee(EEmpleado $empleado); 
+    function delete_Employee($codigo); 
     function get_All();
+    function get_EmployeeById($codigo);
     
     //Funciones de tabla
     function get_Datatables_query();

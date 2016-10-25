@@ -20,7 +20,7 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
     
     //Variables
     var $tabla = "vw_listaempleados";
-    var $columnSearch = array('Codigo_Empleado', 'Nombre', 'Numero_Documento');
+    var $columnSearch = array('Nombre', 'Numero_Documento');
     var $columnOrder = array(NULL, 'Codigo', 'Codigo_Empleado', 'Nombre', NULL, NULL, NULL); //set column field database for datatable orderable
     var $defaultOrder = array('Codigo' => 'asc'); // default order
     
@@ -167,4 +167,147 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
             $this->db->close();
         }
     }
+
+    public function delete_Employee($codigo) {
+        
+        //armamos la data
+        $data = array('p_Codigo' => $codigo);
+        $query = "call spu_EliminarEmpleado(?)";
+            
+        try{
+            
+            //Ejecutamos la consulta
+            $this->db->reconnect();
+            $this->db->trans_begin();
+            $this->db->query($query, $data);
+            $this->db->trans_commit();
+            
+        } catch (Exception $ex) {
+
+            $this->db->trans_rollback();
+            echo $ex->getMessage();
+            
+        }  finally {
+        
+            $this->db->close();
+            return $this->db->affected_rows();
+        }
+    }
+
+    public function get_EmployeeById($codigo) {
+        
+        //armamos la data
+        $data = array('p_Codigo' => $codigo);
+        $query = "call sps_GetEmpleadoById(?)";
+            
+        try{
+            
+            //Ejecutamos la consulta
+            $this->db->reconnect();
+            $result = $this->db->query($query, $data);
+
+            
+        } catch (Exception $ex) {
+
+            echo $ex->getMessage();
+            
+        }  finally {
+        
+            $this->db->close();
+            return $result->row();
+        }
+    }
+
+    public function insert_Employee(\EEmpleado $empleado) {
+        
+        //Armamos la data
+        $data = array(
+            'p_Codigo' => $empleado->cod_empleado,
+            'p_Nombre' => $empleado->nombre,
+            'p_ApePaterno' => $empleado->apepaterno,
+            'p_ApeMaterno' => $empleado->apematerno,
+            'p_TipoDoc' => $empleado->tipodoc,
+            'p_NumeroDoc' => $empleado->numdoc,
+            'p_FechaNacimiento' => $empleado->fecnacimiento,
+            'p_Telefono' => $empleado->telefono,
+            'p_Correo' => $empleado->correo,
+            'p_FecIncorporacion' => $empleado->fecincorp,
+            'p_Categoria' => $empleado->categoria,
+            'p_CtaRed' => $empleado->ctared,
+            'p_CtaE' => $empleado->ctae,
+            'p_CVEmpleado' => "WWW",
+            'p_Estado' => $empleado->nombre,
+        );
+        $query = "call spi_InsertarEmpleado(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try{
+            
+            //Abrimos la conexion
+            $this->db->reconnect();
+            
+            //Iniciamos la transaccion
+            $this->db->trans_begin();
+            $this->db->query($query, $data);
+            $this->db->trans_commit();
+            
+        } catch (Exception $ex) {
+            
+            $this->db->trans_rollback();
+            echo $ex->getMessage();
+            
+        }finally{
+            
+            //Cerramos la conexion
+            $this->db->close();
+            
+            return $this->db->affected_rows();
+        }
+    }
+
+    public function update_Employee(\EEmpleado $empleado) {
+        
+        //Armamos la data
+        $data = array(
+            'p_Codigo' => $empleado->cod_empleado,
+            'p_Nombre' => $empleado->nombre,
+            'p_ApePaterno' => $empleado->apepaterno,
+            'p_ApeMaterno' => $empleado->apematerno,
+            'p_TipoDoc' => $empleado->tipodoc,
+            'p_NumeroDoc' => $empleado->numdoc,
+            'p_FechaNacimiento' => $empleado->fecnacimiento,
+            'p_Telefono' => $empleado->telefono,
+            'p_Correo' => $empleado->correo,
+            'p_FecIncorporacion' => $empleado->fecincorp,
+            'p_Categoria' => $empleado->categoria,
+            'p_CtaRed' => $empleado->ctared,
+            'p_CtaE' => $empleado->ctae,
+            'p_CVEmpleado' => "WWW",
+            'p_Estado' => $empleado->nombre,
+        );
+        $query = "call spu_ActualizarEmpleado(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try{
+            
+            //Abrimos la conexion
+            $this->db->reconnect();
+            
+            //Iniciamos la transaccion
+            $this->db->trans_begin();
+            $this->db->query($query, $data);
+            $this->db->trans_commit();
+            
+        } catch (Exception $ex) {
+            
+            $this->db->trans_rollback();
+            echo $ex->getMessage();
+            
+        }finally{
+            
+            //Cerramos la conexion
+            $this->db->close();
+            
+            return $this->db->affected_rows();
+        }
+    }
+
 }
