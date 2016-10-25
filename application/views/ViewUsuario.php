@@ -24,10 +24,10 @@
                     <table id="tbUsuarios" class="table table-hover">
                         <thead>
                             <tr>
-                                <th style="width:12px;">Código</th>
-                                <th style="width:120px;">Nombre usuario</th>
-                                <th style="width:120px;">Fecha de registro</th>
-                                <th style="width:80px;">Estado</th>
+                                <th style="width:8px;">Código</th>
+                                <th style="width:80px;">Nombre usuario</th>
+                                <th style="width:80px;">Fecha de registro</th>
+                                <th style="width:40px;">Estado</th>
                                 <th style="width:125px;">Acciones</th>
                             </tr>
                         </thead>
