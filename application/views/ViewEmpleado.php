@@ -1,6 +1,5 @@
             <div class="row">
                 <div class="page-header">
-                    <h1>&nbsp;</h1>
                     <h1>Registros de empleados</h1>
                 </div>
                 <div class="btn-group">
