@@ -283,7 +283,8 @@
             //Armamos la trama del Post
             var url = "<?php echo site_url('empleado/insertar') ?>";
             var data = $("#frmAddEmp").serialize();
-
+            alert(data);
+            return;
             $.post(url, data, function(objJson) {
                 
                 if (objJson.status){
