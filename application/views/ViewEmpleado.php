@@ -36,6 +36,123 @@
                     </table>
                 </div>
             </div>
+            <div id="dvAddEmp" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Agregar empleado</h4>
+                        </div>
+                        <form id="frmAddEmp" name="frmAddEmp" class="form-horizontal" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <div class="form-group" style="margin: 5px;">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td><label for="txtUsername">Nombre de usuario:</label></td>
+                                                        <td><input type="text" class="form-control" id="txtUsername" name="txtUsername" placeholder="Nombre de usuario" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtPaterno">Apellido paterno:</label></td>
+                                                        <td><input type="text" class="form-control" id="txtPaterno" name="txtPaterno" placeholder="Apellido paterno" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtMaterno">Apellido materno:</label></td>
+                                                        <td><input type="text" class="form-control" id="txtMaterno" name="txtMaterno" placeholder="Apellido materno" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtCorreo">Correo:</label></td>
+                                                        <td><input type="email" class="form-control" id="txtCorreo" name="txtCorreo" placeholder="Correo" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtCodigo">Codigo Empleado:</label></td>
+                                                        <td><input type="text" class="form-control" id="txtCodigo" name="txtCodigo" placeholder="Codigo" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="fileCV">CV:</label></td>
+                                                        <td><input type="file" id="fileCV" name="fileCV" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="dtFechaAlta">Fecha alta:</label></td>
+                                                        <td><input type="date" class="form-control" id="dtFechaAlta" name="dtFechaAlta" placeholder="Fecha alta" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="cboCategoria">Categoria:</label></td>
+                                                        <td>
+                                                            <select id="cboCategoria" name="cboCategoria" class="form-control" required="">
+                                                                <option value="" selected="">Seleccione...</option>
+                                                                <option value="01">SA</option>
+                                                                <option value="02">SN</option>
+                                                                <option value="03">TL</option>
+                                                                <option value="04">PL</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td><label for="cboTipoDoc">Tipo de documento:</label></td>
+                                                        <!--td><input type="text" class="form-control" id="txtUsername" name="txtUsername" placeholder="Nombre de usuario" autocomplete="off" required></td-->
+                                                        <td>
+                                                            <select id="cboTipoDoc" name="cboTipoDoc" class="form-control" required="">
+                                                                <option value="" selected="">Seleccione...</option>
+                                                                <option value="01">DNI</option>
+                                                                <option value="04">C.E</option>
+                                                                <option value="06">RUC</option>
+                                                                <option value="07">Pasaporte</option>
+                                                                <option value="11">Partida de nacimiento</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtNroDoc">Numero de documento:</label></td>
+                                                        <td><input type="text" class="form-control" id="txtNroDoc" name="txtNroDoc" placeholder="Numero de documento" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtTelefono">Telefono</label></td>
+                                                        <td><input type="text" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="Telefono" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="dtFechaNac">Fecha nacimiento:</label></td>
+                                                        <td><input type="date" class="form-control" id="dtFechaNac" name="dtFechaNac" placeholder="Fecha nacimiento" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="cboEstado">Estado:</label></td>
+                                                        <td>
+                                                            <select id="cboEstado" name="cboEstado" class="form-control" required="">
+                                                                <option value="99" selected="">Seleccione...</option>
+                                                                <option value="0">Inactivo</option>
+                                                                <option value="1">Activo</option>
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtUEveris">Usuario everis:</label></td>
+                                                        <td><input type="text" class="form-control" id="txtUEveris" name="txtUEveris" placeholder="Usuario" autocomplete="off" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label for="txtCuenta">Cuenta E:</label></td>
+                                                        <td><input type="text" class="form-control" id="txtCuenta" name="txtCuenta" placeholder="Cuenta" autocomplete="off" required></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                <button id="btnSaveEmp" type="submit" class="btn btn-success">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
 
 <script>
 
