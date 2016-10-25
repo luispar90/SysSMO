@@ -20,10 +20,26 @@ class Empleado extends CI_Controller {
 	$this->load->library(array('session', 'form_validation'));
 	$this->load->database();
 	$this->load->model('ModelEmpleado');
+        $this->load->helper(array('form', 'url'));
     }
     
     public function insertar() {
-        
+        //variables upload
+        $error = null;
+        $upl = null;
+        // Variables de upload
+        $config['allowed_types'] = 'doc|docx|pdf|txt';
+        $config['upload_path'] = base_url() . 'application/files';
+        // Invocacamos a la libreria upload
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('fileCV'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+        }
+        else
+        {
+            $upl = array('upload_data' => $this->upload->data());
+        }
         //Declaramos una variable de salida
         $output = array();
         
