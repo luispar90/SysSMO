@@ -24,7 +24,7 @@ interface IEntitieUsuario {
     function update_User(EUsuario $usuario);
     function delete_User($usuario);
     function restore_Password($usuario);
-
+    function change_Password($usuario, $password);
 
     //Funciones de tabla
     function get_Datatables_query();

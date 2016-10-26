@@ -286,7 +286,7 @@
         $("#btnDvConfirm").click(function (e){
             
             //Armamos la trama del Post
-            var url = "<?php echo site_url('usuario/reestablecer')?>/" + id;
+            var url = "<?php echo site_url('usuario/reestablecer')?>/" + id + "/";
             var data = "";
             
             //Enviamos los datos por POST

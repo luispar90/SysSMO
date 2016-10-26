@@ -315,4 +315,30 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
         }
     }
 
+    public function change_Password($usuario, $password) {
+        
+        //armamos la data
+        $data = array('p_Usuario' => $usuario, 'p_Clave' => $password);
+        $query = "call spu_CambiarClave(?, ?)";
+        
+        try{
+            
+            //Ejecutamos la consulta
+            $this->db->reconnect();
+            $this->db->trans_begin();
+            $this->db->query($query, $data);
+            $this->db->trans_commit();
+            
+        } catch (Exception $ex) {
+            
+            $this->db->trans_rollback();
+            echo $ex->getMessage();
+            
+        }  finally {
+            
+            $this->db->close();
+            return $this->db->affected_rows();
+        }
+    }
+
 }

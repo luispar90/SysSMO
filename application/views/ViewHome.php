@@ -139,6 +139,7 @@
         <script src="/SysSMO/assets/js/dataTables.bootstrap.js" type="text/javascript"></script>
         <script src="/SysSMO/assets/js/moment.min.js" type="text/javascript"></script>
         <script src="/SysSMO/assets/js/script.js" type="text/javascript"></script>
+        <script src="/SysSMO/assets/js/pwstrength.js" type="text/javascript"></script>
         <script>
             
             //Personalizar el footer al cargar la pagina

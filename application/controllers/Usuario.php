@@ -251,6 +251,48 @@ class Usuario extends CI_Controller {
         echo json_encode($output);
     }
     
+    function cambiar($codigo, $clave) {
+        
+        //Declaramos una variable de salida
+        $output = array();
+        
+        try{
+            
+            //Ejecutamos la consulta
+            $uresult = $this->ModelUsuario->change_Password($codigo, $clave);
+            
+            //Verificamos si hay filas afectadas
+            if(count($uresult) == 1){
+            
+                //Construimos la variable de salida
+                $output = array(
+                    "status" => TRUE,
+                    "mensaje" => "La contraseña fue cambiada correctamente."
+                );
+                
+            }elseif (count($uresult) > 1) {
+                
+                //Construimos la variable de salida
+                throw new Exception("Hay ".count($uresult)." usuario(s) con el mismo código");
+            }
+            else{
+                
+                //Construimos la variable de salida
+                throw new Exception("Usuario no encontrado");
+            }
+            
+        } catch (Exception $ex) {
+            
+            $output = array(
+                "status" => FALSE,
+                "mensaje" => "Error [".$ex->getCode()."]: ".$ex->getMessage()
+            );
+        }
+        
+        //Enviamos a la vista el mensaje con formato JSON
+        echo json_encode($output);
+    }
+    
     public function login() {
         
         //Capturamos los datos
