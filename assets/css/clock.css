@@ -39,7 +39,7 @@ body
 {
     text-align:center;
     padding: 40px 20px 20px;
-    border-radius:6px;
+    /*border-radius:6px;*/
     position:relative;
     height: auto;
 }
@@ -52,7 +52,7 @@ body
 
 #clock.dark:after
 {
-    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    /*box-shadow:0 4px 10px rgba(0,0,0,0.3);*/
 }
 
 #clock.dark .digits div span
@@ -332,4 +332,16 @@ a.buttonhi, a.buttonrs, a.buttonri, a.buttonhs
 a.buttonhi:hover, a.buttonrs:hover, a.buttonri:hover, a.buttonhs:hover
 {
     opacity:0.9;
+}
+
+@media (max-width: 767px) {
+
+    #clock{   
+        width:100%;
+        padding:15px;
+        margin:20px auto 20px;
+        position:relative;
+        font-size: 8px;
+    }
+
 }
