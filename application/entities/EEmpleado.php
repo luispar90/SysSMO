@@ -31,13 +31,14 @@ class EEmpleado {
     private $categoria;
     private $ctared;
     private $ctae;
-    private $proyecto;
     private $estado;
     
     public function __construct($data = null) {
         
         if(isset($data['codigo'])){
             $this->codigo = $data['codigo'];
+            $this->proveedor = $data['proveedor'];
+            $this->feccurso = $data['feccurso'];
         }
         $this->cod_empleado = $data['cod_empleado'];
         $this->nombre = $data['nombre'];
@@ -48,14 +49,11 @@ class EEmpleado {
         $this->fecnacimiento = $data['fecnacimiento'];
         $this->telefono = $data['telefono'];
         $this->correo = $data['correo'];
-        $this->proveedor = $data['proveedor'];
         $this->cv = $data['cv'];
         $this->fecincorp = $data['fecincorp'];
-        $this->feccurso = $data['feccurso'];
         $this->categoria = $data['categoria'];
         $this->ctared = $data['ctared'];
         $this->ctae = $data['ctae'];
-        $this->proyecto = $data['proyecto'];
         $this->estado = $data['estado'];
     }
     

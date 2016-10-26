@@ -155,15 +155,16 @@
                                         <div class="form-group">
                                             <label for="cboEstado">Estado:</label>
                                             <select class="form-control" id="cboEstado" name="cboEstado" required>
-                                                <option value="" selected>Seleccione...</option>
+                                                <option value="">Seleccione...</option>
                                                 <option value="Inactivo">Inactivo</option>
-                                                <option value="Activo">Activo</option>
+                                                <option value="Activo" selected>Activo</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
+                                <button type="button" class="btn btn-default" onclick="test();">Llenar datos</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                 <button id="btnSaveEmp" type="submit" class="btn btn-primary">Guardar</button>
                             </div>
@@ -171,6 +172,23 @@
                     </div>
                 </div>
             </div>
+
+            <div id="dvAlert" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Mensaje</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="pMensaje"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
             
 
 <script>
@@ -215,13 +233,37 @@
                         '<td class="row-detail-header">Proveedor:</td>'+
                         '<td>' + d[10] + '</td>'+
                         '<td class="row-detail-header">Curriculum vitae:</td>'+
-                        '<td>' + d[16] + '</td>'+
+                        '<td><a href="'+ d[17] + '" target="_blank">' + d[16] + '</a></td>'+
                     '</tr>'+
                     '<tr>'+
                         '<td class="row-detail-header">Estado:</td>'+
-                        '<td>' + d[17] + '</td>'+
+                        '<td>' + d[18] + '</td>'+
                     '</tr>'+
                 '</table>';
+    }
+    
+    function reload(){
+        
+        //reload datatable ajax
+        table.ajax.reload(null, false);
+    }
+    
+    function test(){
+    
+        $("#txtCodInt").val("12356");
+        $("#txtCodEmpleado").val("12356");
+        $("#txtNombre").val("12356");
+        $("#txtApePaterno").val("12356");
+        $("#txtApeMaterno").val("12356");
+        $("#dtFechaNac").val("2000-10-31");
+        $("#cboTipoDoc").val("01");
+        $("#txtNumDoc").val("1235678");
+        $("#txtTelefono").val("1235689");
+        $("#txtCorreo").val("12356@asdasd.com");
+        $("#dtFechaAlta").val("2000-10-10");
+        $("#cboCategoria").val("01");
+        $("#txtUsuarioEveris").val("sdasdas");
+        $("#txtCtaE").val("E12356");
     }
     
     $(document).ready(function() {
@@ -310,50 +352,21 @@
                 cache: false,
                 processData:false,
                 success: function(data){
-                    alert(data.mensaje);
+
+                    //Mostramos el mensaje
+                    $("#dvAddEmp").modal("hide");
+                    $("#dvAlert").modal("show");
+                    $("#pMensaje").html(data.mensaje);
                 },
-                error: function(){
+                error: function(data){
+                    alert(data.mensaje);
                 }           
             });
+            
+            //Actualizamos la tabla
+            reload();
+            
         }));
-/*
-
-        //frmAddEmp
-        $("#frmAddEmp").submit(function(e) {
-            //Validar el formulario
-        e.preventDefault();
-        
-            var file_data = $("#fileCV").prop("files")[0];   
-            var form_data = new FormData(this);                  
-            form_data.append('file', file_data);
-            alert(form_data[0]);  
-            /*
-            //Validar el formulario
-            e.preventDefault();
-            var data = new FormData();
-            //Armamos la trama del Post
-            var url = "<?php //echo site_url('empleado/insertar') ?>";
-            //var data = $("#frmAddEmp").serialize();
-            //data.append('file', $('#fileCV').files[0]);
-            data.append('file', $('#fileCV'));
-            alert(data);
-            return;
-            $.post(url, data, function(objJson) {
-                
-                if (objJson.status){
-                    
-                    alert("Se registro correctamente");
-                    
-                }else{
-                    
-                    alert("Hubo error al registrar");
-                }
-                
-                //alert(objJson.mensaje);
-                $("#dvAddEmp").modal("hide");
-                
-            }, 'json');*/
-        //});
 
     });
 

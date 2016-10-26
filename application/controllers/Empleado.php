@@ -50,7 +50,7 @@ class Empleado extends CI_Controller {
             if(is_uploaded_file($_FILES['ifCv']['tmp_name'])) {
                 
                 $sourcePath = $_FILES['ifCv']['tmp_name'];
-                $targetPath = "./application/files/".$_FILES['ifCv']['name'];
+                $targetPath = "./files/".$_FILES['ifCv']['name'];
                 
                 move_uploaded_file($sourcePath, $targetPath);
                 
@@ -109,6 +109,8 @@ class Empleado extends CI_Controller {
                 "mensaje" => "Error [".$ex->getCode()."]: ".$ex->getMessage()
             );
         }
+        
+        echo json_encode($output);
     }
     
     public function getAll() {
@@ -147,7 +149,8 @@ class Empleado extends CI_Controller {
                     $row[] = $user->Categoria;
                     $row[] = $user->Cuenta_Red;
                     $row[] = $user->Cta_E;
-                    $row[] = $user->Cv;
+                    $row[] = substr($user->Cv, 8); //Solo el nombre
+                    $row[] = base_url().substr($user->Cv, 2); //Armamos la ruta
                     $row[] = $user->Estado;
                     
                     $data[] = $row;
