@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+$config = parse_ini_file('./etc/config.ini');
 
 /*
 | -------------------------------------------------------------------
@@ -73,11 +74,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
+$serverdb =     $config['server_db'];
+$dbname   =     $config['db_name'];
+$username =     $config['username'];
+$password =     $config['password'];
+
+
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost;dbname=db_smo',
+	'dsn'	=> 'mysql:host=' . $serverdb . ';dbname=' . $dbname,
 	'hostname' => '',
-	'username' => 'ecaceresl',
-	'password' => '123456',
+	'username' => $username,
+	'password' => $password,
 	'database' => '',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
