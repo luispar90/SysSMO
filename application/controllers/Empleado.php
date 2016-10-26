@@ -24,42 +24,40 @@ class Empleado extends CI_Controller {
     }
     
     public function insertar() {
-        //variables upload
-        $error = null;
-        $upl = null;
-        // Variables de upload
-        $config['allowed_types'] = 'doc|docx|pdf|txt';
-        $config['upload_path'] = base_url() . 'application/files';
-        // Invocacamos a la libreria upload
-        $this->load->library('upload', $config);
-        if (!$this->upload->do_upload('fileCV'))
-        {
-            $error = array('error' => $this->upload->display_errors());
-        }
-        else
-        {
-            $upl = array('upload_data' => $this->upload->data());
-        }
-        //Declaramos una variable de salida
+        
+        //Declaramos la variable
         $output = array();
         
-        //Capturamos valores
-        $nombre = ucwords($this->input->post('txtUsername'));
-        $apellido_pat = ucwords($this->input->post('txtPaterno'));
-        $apellido_mat = ucwords($this->input->post('txtMaterno'));
+        //Capturamos los datos
+        $nombre = $this->input->post('txtNombre');
+        $apellido_pat = $this->input->post('txtApePaterno');
+        $apellido_mat = $this->input->post('txtApeMaterno');
         $correo = $this->input->post('txtCorreo');
-        $codigo = $this->input->post('txtCodigo');
+        $codigo = $this->input->post('txtCodEmpleado');
         $fechaAlta = date('Y-m-d', strtotime($this->input->post('dtFechaAlta')));
         $categoria = $this->input->post('cboCategoria');
         $tipoDoc = $this->input->post('cboTipoDoc');
-        $nroDoc = $this->input->post('txtNroDoc');
+        $nroDoc = $this->input->post('txtNumDoc');
         $telefono = $this->input->post('txtTelefono');
-        $fechaNac = date('Y-m-d', strtotime($this->input->post('dtFechaNac')));
+        $fechaNac = date('Y-m-d', strtotime($this->input->post('dtFechaNac'))); //$this->input->post('dtFechaNac');
         $estado = $this->input->post('cboEstado');
-        $usuarioEveris = $this->input->post('txtUEveris');
-        $cuentaE = $this->input->post('txtCuenta');
+        $usuarioEveris = $this->input->post('txtUsuarioEveris');
+        $cuentaE = $this->input->post('txtCtaE');
         
-        //Armamos la data a enviar
+        //Para el CV del empleado
+        if(is_array($_FILES)) {
+            
+            if(is_uploaded_file($_FILES['ifCv']['tmp_name'])) {
+                
+                $sourcePath = $_FILES['ifCv']['tmp_name'];
+                $targetPath = "./application/files/".$_FILES['ifCv']['name'];
+                
+                move_uploaded_file($sourcePath, $targetPath);
+                
+            }
+        }
+        
+        //Armamos la data
         $data = array(
             'cod_empleado' => $codigo,
             'nombre' => $nombre,
@@ -70,13 +68,16 @@ class Empleado extends CI_Controller {
             'fecnacimiento' => $fechaNac,
             'telefono' => $telefono,
             'correo' => $correo,
-            'cv' => null,
+            'cv' => $targetPath,
             'fecincorp' => $fechaAlta,
             'categoria' => $categoria,
             'ctared' => $usuarioEveris,
             'ctae' => $cuentaE,
             'estado' => $estado
         );
+        
+        //output to json format
+        //echo json_encode(array("data" => $data));
         
         try{
             

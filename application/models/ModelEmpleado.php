@@ -235,8 +235,8 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
             'p_Categoria' => $empleado->categoria,
             'p_CtaRed' => $empleado->ctared,
             'p_CtaE' => $empleado->ctae,
-            'p_CVEmpleado' => "WWW",
-            'p_Estado' => $empleado->nombre,
+            'p_CVEmpleado' => $empleado->cv,
+            'p_Estado' => $empleado->estado,
         );
         $query = "call spi_InsertarEmpleado(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
