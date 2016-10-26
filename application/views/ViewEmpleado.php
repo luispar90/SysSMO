@@ -310,7 +310,7 @@
                 cache: false,
                 processData:false,
                 success: function(data){
-                    alert(data);
+                    alert(data.mensaje);
                 },
                 error: function(){
                 }           
