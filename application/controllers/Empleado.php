@@ -138,8 +138,8 @@ class Empleado extends CI_Controller {
                     $row[] = $user->Numero_Documento;
                     
                     //HTML para las acciones de eliminar y editar data-toggle="tooltip" data-placement="bottom"
-                    $row[] = '<a class="btn btn-sm btn-primary" title="Editar" onclick="edit_user('."'".$user->Codigo."'".')"><i class="glyphicon glyphicon-edit"></i> Editar</a>
-                              <a class="btn btn-sm btn-danger" title="Eliminar" onclick="delete_user('."'".$user->Codigo."'".')"><i class="glyphicon glyphicon-trash"></i> Eliminar</a>';
+                    $row[] = '<a class="btn btn-sm btn-primary" title="Editar" onclick="editar_empleado('."'".$user->Codigo."'".')"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                              <a class="btn btn-sm btn-danger" title="Eliminar" onclick="eliminar_empleado('."'".$user->Codigo."'".')"><i class="glyphicon glyphicon-trash"></i> Eliminar</a>';
                     $row[] = $user->Fecha_Nacimiento;
                     $row[] = $user->Telefono;
                     $row[] = $user->Correo;
@@ -171,5 +171,12 @@ class Empleado extends CI_Controller {
             
             echo $ex->getMessage();
         }
+    }
+    
+    function editar($codigo) {
+        
+        $uresult = $this->ModelEmpleado->get_EmployeeById($codigo);
+        
+        echo json_encode($uresult);
     }
 }

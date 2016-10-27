@@ -3,7 +3,7 @@
                     <h1>Registros de empleados</h1>
                 </div>
                 <div class="btn-group">
-                    <button id="btnAddEmp" class="btn btn-success" data-toggle="modal" data-target="#dvAddEmp">
+                    <button id="btnAddEmp" class="btn btn-success" data-toggle="modal" data-target="#dvAddEmp" onclick="agregar_empleado();">
                         <i class="glyphicon glyphicon-plus"></i> Agregar Empleado
                     </button>
                     <button id="btnReload" class="btn btn-default" onclick="reload()"><i class="glyphicon glyphicon-refresh"></i> Actualizar</button>
@@ -88,10 +88,10 @@
                                             <label for="cboTipoDoc">Tipo de documento:</label>
                                             <select class="form-control" id="cboTipoDoc" name="cboTipoDoc" required>
                                                 <option value="" selected>Seleccione...</option>
-                                                <option value="01">DNI</option>
-                                                <option value="04">C.E</option>
-                                                <option value="06">RUC</option>
-                                                <option value="07">Pasaporte</option>
+                                                <option value="1">DNI</option>
+                                                <option value="4">C.E</option>
+                                                <option value="6">RUC</option>
+                                                <option value="7">Pasaporte</option>
                                                 <option value="11">Partida de nacimiento</option>
                                             </select>
                                         </div>
@@ -156,8 +156,8 @@
                                             <label for="cboEstado">Estado:</label>
                                             <select class="form-control" id="cboEstado" name="cboEstado" required>
                                                 <option value="">Seleccione...</option>
-                                                <option value="Inactivo">Inactivo</option>
-                                                <option value="Activo" selected>Activo</option>
+                                                <option value="INACTIVO">Inactivo</option>
+                                                <option value="ACTIVO" selected>Activo</option>
                                             </select>
                                         </div>
                                     </div>
@@ -264,6 +264,55 @@
         $("#cboCategoria").val("01");
         $("#txtUsuarioEveris").val("sdasdas");
         $("#txtCtaE").val("E12356");
+    }
+    
+    function agregar_empleado(){
+        
+        //Reseteamos todos los elementos del formulario
+        $("#frmAddEmp")[0].reset();
+        
+        //Removemos los atributos
+        $("[name=txtCodInt]").removeAttr("readonly");
+        $("[name=txtCodEmpleado]").removeAttr("readonly");
+        
+        //Configurar los textos para insertar
+        $('.modal-title').text('Agregar empleado');
+        $("#btnSaveEmp").text("Grabar");
+    }
+    
+    function editar_empleado(id){
+
+        //Reseteamos todos los elementos del formulario
+        $("#frmAddEmp")[0].reset();
+
+        //Armamos la trama del Post
+        var url = "<?php echo site_url('empleado/editar')?>/" + id;
+        var data = "";
+
+        //Enviamos la data
+        $.post(url, data, function(objJson){
+
+            $("[name=txtCodInt]").val(objJson.Codigo).attr("readonly", "readonly");
+            $("[name=txtCodEmpleado]").val(objJson.Codigo_Empleado).attr("readonly","readonly");
+            $("[name=txtNombre]").val(objJson.Nombre);
+            $("[name=txtApePaterno]").val(objJson.Apellido_Paterno);
+            $("[name=txtApeMaterno]").val(objJson.Apellido_Materno);
+            $("[name=dtFechaNac]").val(objJson.Fecha_Nacimiento);
+            $("[name=cboTipoDoc]").val(objJson.Tipo_Documento);
+            $("[name=txtNumDoc]").val(objJson.Numero_Documento);
+            $("[name=txtTelefono]").val(objJson.Telefono);
+            $("[name=txtCorreo]").val(objJson.Correo);
+            $("[name=dtFechaAlta]").val(objJson.Fecha_Incorporacion);
+            $("[name=cboCategoria]").val(objJson.Categoria);
+            $("[name=txtUsuarioEveris]").val(objJson.Cuenta_Red);
+            $("[name=txtCtaE]").val(objJson.Cta_E);
+            $("[name=cboEstado]").val(objJson.Estado);
+
+            //Abrimos el modal
+            $("#dvAddEmp").modal("show");
+            $('.modal-title').text('Editar empleado');
+            $("#btnSaveEmp").text("Actualizar");
+        }, 'json');
     }
     
     $(document).ready(function() {
