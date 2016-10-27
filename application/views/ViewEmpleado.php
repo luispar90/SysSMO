@@ -195,6 +195,7 @@
 
     //Declaramos una variable
     var table;
+    var save_method;
     
     function format(d){
                      
@@ -268,6 +269,9 @@
     
     function agregar_empleado(){
         
+        //Indicamos que la operacion es insertar
+        save_method = 'add';
+        
         //Reseteamos todos los elementos del formulario
         $("#frmAddEmp")[0].reset();
         
@@ -278,10 +282,14 @@
         //Configurar los textos para insertar
         $('.modal-title').text('Agregar empleado');
         $("#btnSaveEmp").text("Grabar");
+        
     }
     
     function editar_empleado(id){
-
+        
+        //Indicamos que la operacion es insertar
+        save_method = 'update';
+        
         //Reseteamos todos los elementos del formulario
         $("#frmAddEmp")[0].reset();
 
@@ -389,10 +397,24 @@
             
             //Evitar que se ejecute la tarea por defecto
             e.preventDefault();
-        
+            
+            //Declaramos una variable que almacene la url
+            var url;
+            
+            //Verificamos que tipo de operacion es
+            if(save_method === 'add'){
+                
+                //URL para el registro de nuevo empleado
+                url = "<?php echo site_url('empleado/insertar') ?>";
+            }else{
+                
+                //URL para la actualizacion
+                url = "<?php echo site_url('empleado/actualizar') ?>";
+            }
+
             //Enviamos los datos por ajax
             $.ajax({
-                url: "<?php echo site_url('empleado/insertar') ?>",
+                url: url,
                 type: "POST",
                 data:  new FormData(this),
                 dataType: "json",

@@ -113,6 +113,95 @@ class Empleado extends CI_Controller {
         echo json_encode($output);
     }
     
+    public function actualizar() {
+        
+        //Declaramos la variable
+        $output = array();
+        
+        //Capturamos los datos
+        $codigoInt = $this->input->post('txtCodInt');
+        $nombre = $this->input->post('txtNombre');
+        $apellido_pat = $this->input->post('txtApePaterno');
+        $apellido_mat = $this->input->post('txtApeMaterno');
+        $correo = $this->input->post('txtCorreo');
+        $codigo = $this->input->post('txtCodEmpleado');
+        $fechaAlta = date('Y-m-d', strtotime($this->input->post('dtFechaAlta')));
+        $categoria = $this->input->post('cboCategoria');
+        $tipoDoc = $this->input->post('cboTipoDoc');
+        $nroDoc = $this->input->post('txtNumDoc');
+        $telefono = $this->input->post('txtTelefono');
+        $fechaNac = date('Y-m-d', strtotime($this->input->post('dtFechaNac'))); //$this->input->post('dtFechaNac');
+        $estado = $this->input->post('cboEstado');
+        $usuarioEveris = $this->input->post('txtUsuarioEveris');
+        $cuentaE = $this->input->post('txtCtaE');
+        
+        //Para el CV del empleado
+        if(is_array($_FILES)) {
+            
+            if(is_uploaded_file($_FILES['ifCv']['tmp_name'])) {
+                
+                $sourcePath = $_FILES['ifCv']['tmp_name'];
+                $targetPath = "./files/".$_FILES['ifCv']['name'];
+                
+                move_uploaded_file($sourcePath, $targetPath);
+                
+            }
+        }
+        
+        //Armamos la data
+        $data = array(
+            'codigo' => $codigoInt,
+            'cod_empleado' => $codigo,
+            'nombre' => $nombre,
+            'apepaterno' => $apellido_pat,
+            'apematerno' => $apellido_mat,
+            'tipodoc' => $tipoDoc,
+            'numdoc' => $nroDoc,
+            'fecnacimiento' => $fechaNac,
+            'telefono' => $telefono,
+            'correo' => $correo,
+            'cv' => $targetPath,
+            'fecincorp' => $fechaAlta,
+            'categoria' => $categoria,
+            'ctared' => $usuarioEveris,
+            'ctae' => $cuentaE,
+            'estado' => $estado
+        );
+        
+        try{
+            
+            //Instanciamos un objeto
+            $empleado = new EEmpleado($data);
+            
+            //Capturamos el valor de retorno
+            $result = $this->ModelEmpleado->update_Employee($empleado);
+            
+            //Verificamos si hay filas afectadas
+            if($result > 0){
+            
+                //Construimos la variable de salida
+                $output = array(
+                    "status" => TRUE,
+                    "mensaje" => "Usuario actualizado correctamente"
+                );
+                
+            }else{
+                
+                //Construimos la variable de salida
+                throw new Exception("Error al actualizar el usuario");
+            }
+            
+        } catch (Exception $ex) {
+            
+            $output = array(
+                "status" => FALSE,
+                "mensaje" => "Error [".$ex->getCode()."]: ".$ex->getMessage()
+            );
+        }
+        
+        echo json_encode($output);
+    }
+    
     public function getAll() {
         
         //Declaramos variables
@@ -179,4 +268,5 @@ class Empleado extends CI_Controller {
         
         echo json_encode($uresult);
     }
+    
 }

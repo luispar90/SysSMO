@@ -268,6 +268,7 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
         
         //Armamos la data
         $data = array(
+            'p_CodInt' => $empleado->codigo,
             'p_Codigo' => $empleado->cod_empleado,
             'p_Nombre' => $empleado->nombre,
             'p_ApePaterno' => $empleado->apepaterno,
@@ -281,10 +282,10 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
             'p_Categoria' => $empleado->categoria,
             'p_CtaRed' => $empleado->ctared,
             'p_CtaE' => $empleado->ctae,
-            'p_CVEmpleado' => "WWW",
-            'p_Estado' => $empleado->nombre,
+            'p_CVEmpleado' => $empleado->cv,
+            'p_Estado' => $empleado->estado,
         );
-        $query = "call spu_ActualizarEmpleado(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "call spu_ActualizarEmpleado(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         try{
             

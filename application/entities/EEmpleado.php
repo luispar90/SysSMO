@@ -24,10 +24,8 @@ class EEmpleado {
     private $fecnacimiento;
     private $telefono;
     private $correo;
-    private $proveedor;
     private $cv;
     private $fecincorp;
-    private $feccurso;
     private $categoria;
     private $ctared;
     private $ctae;
@@ -37,8 +35,6 @@ class EEmpleado {
         
         if(isset($data['codigo'])){
             $this->codigo = $data['codigo'];
-            $this->proveedor = $data['proveedor'];
-            $this->feccurso = $data['feccurso'];
         }
         $this->cod_empleado = $data['cod_empleado'];
         $this->nombre = $data['nombre'];
