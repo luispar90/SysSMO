@@ -39,6 +39,8 @@
                         <li class="active"><a href="/SysSMO/home/home">Home</a></li>
                         <li><a href="javascript:cargarPagina('verUsuarios')">Usuarios</a></li>
                         <li><a href="javascript:cargarPagina('verAsistencia')">Asistencia</a></li>
+                        <!-- JECL Rotacion de personal -->
+                        <li><a href="javascript:cargarPagina('verRotacion')">Rotacion</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">

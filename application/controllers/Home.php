@@ -44,6 +44,11 @@ class Home extends CI_Controller{
         $this->load->view('ViewEmpleado');
     }
     
+    // 27-10-2016 JECL: Pagina de rotacion de personal
+    public function verRotacion() {
+        $this->load->view('ViewRotacion');
+    }
+    
     public function inicio() {
         redirect('home/index');
     }
