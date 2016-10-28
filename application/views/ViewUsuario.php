@@ -154,6 +154,7 @@
         
         //Datatables
         table = $("#tbUsuarios").DataTable({
+            
             "processing": true, //Feature control the processing indicator.
             "serverSide": true, //Feature control DataTables' server-side processing mode.
             "order": [], //Initial no order.
@@ -170,8 +171,19 @@
                     "targets": [ -1 ], //last column
                     "orderable": false, //set not orderable
                 }
-            ]
+            ],
+            buttons: [
+        {
+            extend: 'excelHtml5',
+            text: 'Save as Excel',
+            customize: function( xlsx ) {
+                var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                $('row:first c', sheet).attr( 's', '42' );
+            }
+        }
+    ]
         });
+        
     });
     
     $("#frmAddUser").submit(function (e){
