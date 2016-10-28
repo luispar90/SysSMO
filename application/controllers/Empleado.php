@@ -43,44 +43,66 @@ class Empleado extends CI_Controller {
         $estado = $this->input->post('cboEstado');
         $usuarioEveris = $this->input->post('txtUsuarioEveris');
         $cuentaE = $this->input->post('txtCtaE');
-        
-        //Para el CV del empleado
-        if(is_array($_FILES)) {
-            
-            if(is_uploaded_file($_FILES['ifCv']['tmp_name'])) {
-                
-                $sourcePath = $_FILES['ifCv']['tmp_name'];
-                $targetPath = "./files/".$_FILES['ifCv']['name'];
-                
-                move_uploaded_file($sourcePath, $targetPath);
-                
-            }
-        }
-        
-        //Armamos la data
-        $data = array(
-            'cod_empleado' => $codigo,
-            'nombre' => $nombre,
-            'apepaterno' => $apellido_pat,
-            'apematerno' => $apellido_mat,
-            'tipodoc' => $tipoDoc,
-            'numdoc' => $nroDoc,
-            'fecnacimiento' => $fechaNac,
-            'telefono' => $telefono,
-            'correo' => $correo,
-            'cv' => $targetPath,
-            'fecincorp' => $fechaAlta,
-            'categoria' => $categoria,
-            'ctared' => $usuarioEveris,
-            'ctae' => $cuentaE,
-            'estado' => $estado
-        );
-        
-        //output to json format
-        //echo json_encode(array("data" => $data));
-        
+
         try{
             
+            ////Para el CV del empleado
+            if(is_array($_FILES)) {
+
+                if(is_uploaded_file($_FILES['ifCv']['tmp_name'])) {
+
+                    $sourcePath = $_FILES['ifCv']['tmp_name'];
+                    $targetPath = "./files/".$_FILES['ifCv']['name'];
+
+                    move_uploaded_file($sourcePath, $targetPath);
+
+                }else{
+                    
+                    //Declaramos una variable
+                    $errorfile = $_FILES['ifCv']['error'];
+                    $mensaje = "";
+                    
+                    switch ($errorfile) {
+                        
+                        case 1:
+                            $mensaje = "El archivo pesa demasiado. Máximo permitido: 2 Mb";
+                            break;
+                        case 2:
+                            $mensaje = "No se puede subir más de dos archivos";
+                            break;
+                        case 3:
+                            $mensaje = "El archivo fue cargado parcialmente";
+                            break;
+                        case 4:
+                            $mensaje = "No se cargó ningún archivo";
+                            break;
+                        default:
+                            $mensaje = "Error al subir el archivo";
+                    }
+                    
+                    throw new Exception($mensaje, $errorfile);
+                }
+            }
+
+            //Armamos la data
+            $data = array(
+                'cod_empleado' => $codigo,
+                'nombre' => $nombre,
+                'apepaterno' => $apellido_pat,
+                'apematerno' => $apellido_mat,
+                'tipodoc' => $tipoDoc,
+                'numdoc' => $nroDoc,
+                'fecnacimiento' => $fechaNac,
+                'telefono' => $telefono,
+                'correo' => $correo,
+                'cv' => $targetPath,
+                'fecincorp' => $fechaAlta,
+                'categoria' => $categoria,
+                'ctared' => $usuarioEveris,
+                'ctae' => $cuentaE,
+                'estado' => $estado
+            );
+
             //Instanciamos un objeto
             $empleado = new EEmpleado($data);
             
@@ -130,46 +152,49 @@ class Empleado extends CI_Controller {
         $tipoDoc = $this->input->post('cboTipoDoc');
         $nroDoc = $this->input->post('txtNumDoc');
         $telefono = $this->input->post('txtTelefono');
-        $fechaNac = date('Y-m-d', strtotime($this->input->post('dtFechaNac'))); //$this->input->post('dtFechaNac');
-        $estado = $this->input->post('cboEstado');
+        $fechaNac = date('Y-m-d', strtotime($this->input->post('dtFechaNac')));
+        $estado = (trim($this->input->post('cboEstado')) == "ACTIVO" ? 1 : 0);
         $usuarioEveris = $this->input->post('txtUsuarioEveris');
         $cuentaE = $this->input->post('txtCtaE');
-        
-        //Para el CV del empleado
-        if(is_array($_FILES)) {
-            
-            if(is_uploaded_file($_FILES['ifCv']['tmp_name'])) {
-                
-                $sourcePath = $_FILES['ifCv']['tmp_name'];
-                $targetPath = "./files/".$_FILES['ifCv']['name'];
-                
-                move_uploaded_file($sourcePath, $targetPath);
-                
-            }
-        }
-        
-        //Armamos la data
-        $data = array(
-            'codigo' => $codigoInt,
-            'cod_empleado' => $codigo,
-            'nombre' => $nombre,
-            'apepaterno' => $apellido_pat,
-            'apematerno' => $apellido_mat,
-            'tipodoc' => $tipoDoc,
-            'numdoc' => $nroDoc,
-            'fecnacimiento' => $fechaNac,
-            'telefono' => $telefono,
-            'correo' => $correo,
-            'cv' => $targetPath,
-            'fecincorp' => $fechaAlta,
-            'categoria' => $categoria,
-            'ctared' => $usuarioEveris,
-            'ctae' => $cuentaE,
-            'estado' => $estado
-        );
-        
+
         try{
             
+            ////Para el CV del empleado
+            if(is_array($_FILES)) {
+
+                if(is_uploaded_file($_FILES['ifCv']['tmp_name'])) {
+
+                    $sourcePath = $_FILES['ifCv']['tmp_name'];
+                    $targetPath = "./files/".$_FILES['ifCv']['name'];
+
+                    move_uploaded_file($sourcePath, $targetPath);
+
+                }else{
+                    
+                    throw new Exception("Error al subir el archivo", $_FILES['ifCv']['error']);
+                }
+            }
+        
+            //Armamos la data
+            $data = array(
+                'codigo' => $codigoInt,
+                'cod_empleado' => $codigo,
+                'nombre' => $nombre,
+                'apepaterno' => $apellido_pat,
+                'apematerno' => $apellido_mat,
+                'tipodoc' => $tipoDoc,
+                'numdoc' => $nroDoc,
+                'fecnacimiento' => $fechaNac,
+                'telefono' => $telefono,
+                'correo' => $correo,
+                'cv' => $targetPath,
+                'fecincorp' => $fechaAlta,
+                'categoria' => $categoria,
+                'ctared' => $usuarioEveris,
+                'ctae' => $cuentaE,
+                'estado' => $estado
+            );
+        
             //Instanciamos un objeto
             $empleado = new EEmpleado($data);
             
@@ -199,6 +224,43 @@ class Empleado extends CI_Controller {
             );
         }
         
+        echo json_encode($output);
+    }
+    
+    public function eliminar($codigo) {
+        
+        //Declaramos una variable de salida
+        $output = array();
+                
+        try{
+            
+            //Ejecutamos
+            $uresult = $this->ModelEmpleado->delete_Employee($codigo);
+            
+            //Verificamos si hay filas afectadas
+            if($uresult > 0){
+            
+                //Construimos la variable de salida
+                $output = array(
+                    "status" => TRUE,
+                    "mensaje" => "Empleado eliminado correctamente"
+                );
+                
+            }else{
+                
+                //Construimos la variable de salida
+                throw new Exception("Error al eliminar el empleado");
+            }
+            
+        } catch (Exception $ex) {
+            
+            $output = array(
+                "status" => FALSE,
+                "mensaje" => "Error [".$ex->getCode()."]: ".$ex->getMessage()
+            );
+        }
+        
+        //Enviamos la respuesta en formato JSON
         echo json_encode($output);
     }
     
@@ -262,11 +324,10 @@ class Empleado extends CI_Controller {
         }
     }
     
-    function editar($codigo) {
+    public function editar($codigo) {
         
         $uresult = $this->ModelEmpleado->get_EmployeeById($codigo);
         
         echo json_encode($uresult);
     }
-    
 }
