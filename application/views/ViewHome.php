@@ -142,13 +142,6 @@
         <script src="/SysSMO/assets/js/moment.min.js" type="text/javascript"></script>
         <script src="/SysSMO/assets/js/script.js" type="text/javascript"></script>
         <script src="/SysSMO/assets/js/pwstrength.js" type="text/javascript"></script>
-        <script src="/SysSMO/assets/js/dataTables.buttons.min.js" type="text/javascript"></script>
-        <script src="/SysSMO/assets/js/buttons.flash.min.js" type="text/javascript"></script>
-        <script src="/SysSMO/assets/js/buttons.html5.min.js" type="text/javascript"></script>
-        <script src="/SysSMO/assets/js/buttons.print.min.js" type="text/javascript"></script>
-        <script src="/SysSMO/assets/js/jszip.min.js" type="text/javascript"></script>
-        <script src="/SysSMO/assets/js/pdfmake.min.js" type="text/javascript"></script>
-        <script src="/SysSMO/assets/js/vfs_fonts.js" type="text/javascript"></script>
         <script>
             
             //Personalizar el footer al cargar la pagina
