@@ -105,17 +105,31 @@
                 $.post(url, data, function(objJson){
                     if(objJson.count == 0)
                     {
-                        $("#alertMessage").show();
-                        $("#regRotacion").show();
-                        $(".loader_content").hide();
+                        // fadeIn(), fadeOut()
+                        //$("#alertMessage").show();
+                        $("#alertMessage").fadeIn();
+                        //$("#regRotacion").show();
+                        $("#regRotacion").fadeIn();
+                        //$("#frmRotacionEmpleado").hide();
+                        $("#frmRotacionEmpleado").fadeOut();
+                        //$(".loader_content").hide();
+                        $(".loader_content").fadeOut();
+                        $("#txtNombre").val("")
                         return;
                     }
                     else
                     {
-                        $(".loader_content").hide();
-                        $("#frmRotacionEmpleado").slideToggle(1200);
+                        //$(".loader_content").hide();
+                        $(".loader_content").fadeOut();
+                        //$("#alertMessage").hide();
+                        $("#alertMessage").fadeOut();
+                        //$("#regRotacion").hide();
+                        $("#regRotacion").fadeOut();
+                        //$("#frmRotacionEmpleado").slideToggle(1200);
                         //$("#frmRotacionEmpleado").show();
+                        $("#frmRotacionEmpleado").fadeIn();
                         $("#txtRotNombre").val(objJson.data[0].Nombre);
+                        $("#txtNombre").val(objJson.data[0].Nombre);
                         /*
                         alert(objJson.data[0].Codigo_Empleado);
                         alert(objJson.data[0].Nombre);
