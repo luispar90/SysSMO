@@ -330,4 +330,21 @@ class Empleado extends CI_Controller {
         
         echo json_encode($uresult);
     }
+    
+    function getRoles()
+    {
+        $data = $this->ModelEmpleado->getRoles();
+        //echo json_encode(array('roles' => print_r($result)));
+        //$count = print_r($result);
+        $output = array("data" => $data, "count" => count($data));
+        echo json_encode($output);
+    }
+    
+    public function getEmpleadoCodigo($codigo)
+    {
+        $empleado = $this->ModelEmpleado->GetEmpleadoByCodigo($codigo);
+            $data = array('count' => count($empleado), 'data' => $empleado);
+            echo json_encode($data);
+        //echo json_encode(array('codigo' => 5));
+    }
 }
