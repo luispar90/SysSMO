@@ -343,8 +343,8 @@ class Empleado extends CI_Controller {
     public function getEmpleadoCodigo($codigo)
     {
         $empleado = $this->ModelEmpleado->GetEmpleadoByCodigo($codigo);
-            $data = array('count' => count($empleado), 'data' => $empleado);
-            echo json_encode($data);
+        $data = array('count' => count($empleado), 'data' => $empleado);
+        echo json_encode($data);
         //echo json_encode(array('codigo' => 5));
     }
 }

@@ -30,7 +30,7 @@
                     <form class="form-horizontal" id="frmRotacionEmpleado">                           
                         <div class="form-group">
                             <label for="cboRol">Rol</label>
-                            <select id="cboRol">
+                            <select id="cboRol" class="form-control" style="width: 200px;">
                             </select>
                         </div>
                         <div class="form-group" style="width: 200px;">
@@ -43,7 +43,10 @@
                         </div>
                         <div class="form-group" style="width: 200px;">
                             <label for="txtEstadoRot">Estado</label>
-                            <input type="text" class="form-control" id="txtEstadoRot" name="txtEstadoRot" placeholder="">
+                            <select id="cboRol" class="form-control" style="width: 200px;">
+                                <option value="0">Activo</option>
+                                <option value="1">Inactivo</option>
+                            </select>
                         </div>
                         <div class="form-group" style="width: 200px;">
                             <label for="txtMotivoRot">Motivo</label>
@@ -67,13 +70,6 @@
                 $("#alertMessage").hide();
                 $("#frmRotacionEmpleado").hide();
                 $("#regRotacion").hide();
-            });
-            
-            $("#regRotacion").click(function(){
-                $("#frmRotacionEmpleado").show();
-                $("#alertMessage").hide();
-                $("#regRotacion").hide();
-                $(".loader_content").show();
                 
                 var url = "<?php echo site_url('empleado/getRoles')?>";
                 var data = "";
@@ -89,7 +85,13 @@
                     $(".loader_content").hide();
                     //alert(options);
                 }, 'json');
-                
+            });
+            
+            $("#regRotacion").click(function(){
+                $("#frmRotacionEmpleado").show();
+                $("#alertMessage").hide();
+                $("#regRotacion").hide();
+                $(".loader_content").show();
             });
             
             $("#frmConsultarEmpleado").submit(function (e){
@@ -111,7 +113,16 @@
                     else
                     {
                         $(".loader_content").hide();
-                        alert("Hola Mundo");
+                        $("#frmRotacionEmpleado").slideToggle(1200);
+                        //$("#frmRotacionEmpleado").show();
+                        $("#txtRotNombre").val(objJson.data[0].Nombre);
+                        /*
+                        alert(objJson.data[0].Codigo_Empleado);
+                        alert(objJson.data[0].Nombre);
+                        alert(objJson.data[0].Tipo_Documento);
+                        alert(objJson.data[0].Categoria);
+                        */
+                        //alert(objJson.data[2]);
                     }
                     //$("#dvAlert").modal("show");
                     //$("#pMensaje").html(objJson.mensaje);
