@@ -33,7 +33,7 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
         
         //Armamos la data
         $data = array('p_usuario' => $usuario, 'p_Clave' => md5($clave));
-        $query = "call sp_getUsuario(?,?)";
+        $query = "call sps_getUsuario(?,?)";
         
         //Ejecutamos la consulta
         $result = $this->db->query($query, $data);
@@ -45,7 +45,7 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
         
         //armamos la data
         $data = array('p_NombreUsuario' => NULL);
-        $query = "call sp_ListaUsuario(?)";
+        $query = "call sps_ListaUsuario(?)";
         
         try{
             
@@ -69,7 +69,7 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
         
         //armamos la data
         $data = array('p_UserName' => $usuario->__get("usuario"), 'p_Clave' => $usuario->__get("clave"));
-        $query = "call sp_AgregarUsuario(?, ?)";
+        $query = "call spi_AgregarUsuario(?, ?)";
         
         try{
             
@@ -206,7 +206,7 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
         
         //armamos la data
         $data = array('p_Codigo' => $codigo);
-        $query = "call sp_GetUsuarioById(?)";
+        $query = "call sps_GetUsuarioById(?)";
             
         try{
             
@@ -237,7 +237,7 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
                 
                 );
         
-        $query = "call sp_ActualizarUsusario(?,?,?,?)";
+        $query = "call spu_ActualizarUsusario(?,?,?,?)";
         
         try{
             
@@ -265,7 +265,7 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
         
         //armamos la data
         $data = array('p_Codigo' => $usuario);
-        $query = "call sp_EliminarUsuario(?)";
+        $query = "call spu_EliminarUsuario(?)";
             
         try{
             
@@ -292,7 +292,7 @@ class ModelUsuario extends CI_Model implements IEntitieUsuario{
         
         //armamos la data
         $data = array('p_Usuario' => $usuario);
-        $query = "call sp_ResetearClave(?, @out_Clave)";
+        $query = "call spu_ResetearClave(?, @out_Clave)";
         
         try{
             

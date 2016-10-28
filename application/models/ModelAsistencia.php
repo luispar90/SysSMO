@@ -19,7 +19,6 @@ include_once '/../interfaces/IEntitieAsistencia.php';
 class ModelAsistencia extends CI_Model implements IEntitieAsistencia{
     
     //Variables
-    var $tabla = "SMOT_ASISTENCIA";
     var $vista = "vw_listaasistencia";
     var $columnSearch = array('USUARIO', 'FECHA', 'HORA');
     var $columnOrder = array('ID_REGISTRO', 'COD_EMPLEADO', 'USUARIO', 'FECHA', 'TIPO_HORA', 'HORA', 'ESTADO', NULL); //set column field database for datatable orderable
@@ -66,7 +65,7 @@ class ModelAsistencia extends CI_Model implements IEntitieAsistencia{
         
         //armamos la data
         $data = array('p_NombreUsuario' => NULL);
-        $query = "call sp_ListaAsistencia(?)";
+        $query = "call sps_ListaAsistencia(?)";
         
         try{
             
