@@ -315,6 +315,7 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
         
         $this->db->reconnect();
         $query = $this->db->get('smot_rol');
+        $this->db->close();
         return $query->result();
     }
     
@@ -322,6 +323,15 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
         
         $this->db->reconnect();
         $query = $this->db->get('smot_motivo');
+        $this->db->close();
+        return $query->result();
+    }
+    
+    public function getTorres(){
+        
+        $this->db->reconnect();
+        $query = $this->db->get('smot_torre');
+        $this->db->close();
         return $query->result();
     }
     

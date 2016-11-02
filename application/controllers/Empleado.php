@@ -343,6 +343,12 @@ class Empleado extends CI_Controller {
         echo json_encode($output);
     }
     
+    public function getTorres(){
+        $data = $this->ModelEmpleado->getTorres();
+        $output = array("data" => $data, "count" => count($data));
+        echo json_encode($output);
+    }
+    
     public function getEmpleadoCodigo($codigo){
         
         $empleado = $this->ModelEmpleado->GetEmpleadoByCodigo($codigo);
