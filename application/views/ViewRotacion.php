@@ -10,11 +10,11 @@
                     <form class="form-inline" id="frmConsultarEmpleado">
                         <div class="form-group">
                             <label for="txtCodigoEmp">Codigo de empleado</label>
-                            <input type="text" class="form-control" id="txtCodigoEmp" name="txtCodigoEmp" placeholder="">
+                            <input type="text" class="form-control" id="txtCodigoEmp" name="txtCodigoEmp" autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="txtNombre">Nombre de empleado</label>
-                            <input type="text" class="form-control" id="txtNombre" name="txtNombre" placeholder="" readonly="">
+                            <input type="text" class="form-control" id="txtNombre" name="txtNombre" readonly>
                         </div>
                         <button type="submit" class="btn btn-success">Consultar</button>
                     </form>

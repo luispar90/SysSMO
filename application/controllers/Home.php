@@ -49,6 +49,10 @@ class Home extends CI_Controller{
         $this->load->view('ViewRotacion');
     }
     
+    public function registroEmpleado() {
+        $this->load->view('ViewRegistroEmpleado');
+    }
+    
     public function inicio() {
         redirect('home/index');
     }

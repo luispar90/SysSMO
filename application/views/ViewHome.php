@@ -41,6 +41,8 @@
                         <li><a href="javascript:cargarPagina('verAsistencia')">Asistencia</a></li>
                         <!-- JECL Rotacion de personal -->
                         <li><a href="javascript:cargarPagina('verRotacion')">Rotacion</a></li>
+                        <!-- LEPA Registro de empleado -->
+                        <li><a href="javascript:cargarPagina('registroEmpleado')">Rotacion</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">

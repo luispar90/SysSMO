@@ -311,28 +311,34 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
         }
     }
     
-    public function getRoles()
-    {
+    public function getRoles(){
+        
         $this->db->reconnect();
         $query = $this->db->get('smot_rol');
         return $query->result();
     }
     
-    public function GetEmpleadoByCodigo($codigo)
-    {
+    public function getMotivos(){
+        
+        $this->db->reconnect();
+        $query = $this->db->get('smot_motivo');
+        return $query->result();
+    }
+    
+    public function GetEmpleadoByCodigo($codigo){
+        
         $data = array('p_Codigo' => $codigo);
         $query = "call sps_ListaEmpleado(?)";
-        try
-        {
+        
+        try{
             $this->db->reconnect();
             $result = $this->db->query($query, $data);
-        }
-        catch (Exception $ex)
-        {
+            
+        }catch (Exception $ex){
+            
             echo $ex->getMessage();
-        }
-        finally
-        {
+        }finally{
+            
             $this->db->close();
             return $result->result();
         }
