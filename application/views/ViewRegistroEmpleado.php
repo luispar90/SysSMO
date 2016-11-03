@@ -184,9 +184,9 @@
                                     <div class="form-group">
                                         <label for="cboEstadoCdt">Estado CDT:</label>
                                         <select class="form-control" id="cboEstadoCdt" name="cboEstadoCdt" required>
-                                            <option value="" selected>Seleccione...</option>
+                                            <option value="">Seleccione...</option>
                                             <option value="1">Activo</option>
-                                            <option value="0">Inactivo</option>
+                                            <option value="0" selected>Baja</option>
                                         </select>
                                     </div>
                                 </div>
@@ -338,7 +338,7 @@
             var options = '';
             
             for (var x = 0; x < objJson.count; x++){
-                options += '<option value="' + objJson.data[x]['ROLN_CODIGO'] + '">' + objJson.data[x]['ROLV_DESCRIPCION'] + '</option>';
+                options += '<option value="' + objJson.data[x]['CODIGO'] + '">' + objJson.data[x]['DESCRIPCION'] + '</option>';
             }
             $("#cboRol").append(options);
         }, 'json');
@@ -352,7 +352,7 @@
             var options = '';
             
             for (var x = 0; x < objJson.count; x++){
-                options += '<option value="' + objJson.data[x]['MOTC_CODIGO'] + '">' + objJson.data[x]['MOTV_DESCRIPCION'] + '</option>';
+                options += '<option value="' + objJson.data[x]['CODIGO'] + '">' + objJson.data[x]['DESCRIPCION'] + '</option>';
             }
             $("#cboMotivoRol").append(options);
             $("#cboMotivoPlaza").append(options);
@@ -367,9 +367,23 @@
             var options = '';
             
             for (var x = 0; x < objJson.count; x++){
-                options += '<option value="' + objJson.data[x]['TORRC_CODIGO'] + '">' + objJson.data[x]['TORRV_DESCRIPCION'] + '</option>';
+                options += '<option value="' + objJson.data[x]['CODIGO'] + '">' + objJson.data[x]['NOMBRE'] + '</option>';
             }
             $("#cboTorreSol").append(options);
+        }, 'json');
+        
+        //Llenamos las plazas
+        var url = "<?php echo site_url('empleado/getPlazas')?>";
+        var data = "";
+        
+        $.post(url, data, function(objJson){
+            
+            var options = '';
+            
+            for (var x = 0; x < objJson.count; x++){
+                options += '<option value="' + objJson.data[x]['CODIGO'] + '">' + objJson.data[x]['COD_PLAZA'] + '</option>';
+            }
+            $("#cboPlaza").append(options);
         }, 'json');
     });
 
@@ -447,7 +461,11 @@
 
                 //Mostramos el mensaje
                 alert(data.mensaje);
-                $("#frmAddRol").submit();
+                
+                if(data.status){
+                    $("#frmAddRol").submit();
+                }
+                
             },
             error: function(xhr, status, error){
                 alert(xhr.responseText);
@@ -468,8 +486,27 @@
         $.post(url, $("#frmAddRol").serialize(), function(objJson){
             
             alert(objJson.mensaje);
+            
+            if(objJson.status && v_ConPlaza){
+                $("#frmAddPlaza").submit();
+            }
         }, 'json');
         
         
     });
+    
+    $("#frmAddPlaza").submit(function (e){
+        
+        //Evitamos que se ejecute
+        e.preventDefault();
+        
+        //Capturamos los datos
+        var url = "<?php echo site_url('plaza/insertar')?>";
+        var data = $("#frmAddPlaza").serialize();
+        
+        $.post(url, data, function (e){
+            alert(e.mensaje);
+        }, 'json');
+    });
+    
 </script>

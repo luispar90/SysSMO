@@ -314,7 +314,7 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
     public function getRoles(){
         
         $this->db->reconnect();
-        $query = $this->db->get('smot_rol');
+        $query = $this->db->get('vw_listaroles');
         $this->db->close();
         return $query->result();
     }
@@ -322,7 +322,7 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
     public function getMotivos(){
         
         $this->db->reconnect();
-        $query = $this->db->get('smot_motivo');
+        $query = $this->db->get('vw_listamotivos');
         $this->db->close();
         return $query->result();
     }
@@ -330,7 +330,15 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
     public function getTorres(){
         
         $this->db->reconnect();
-        $query = $this->db->get('smot_torre');
+        $query = $this->db->get('vw_listatorres');
+        $this->db->close();
+        return $query->result();
+    }
+    
+    public function getPlazas(){
+        
+        $this->db->reconnect();
+        $query = $this->db->get('vw_listaplazas');
         $this->db->close();
         return $query->result();
     }
