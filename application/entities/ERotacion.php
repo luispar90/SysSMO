@@ -26,7 +26,7 @@ class ERotacion {
         $this->empleado = $data['empleado'];
         $this->fecha = $data['fecha'];
         $this->motivo = $data['motivo'];
-        $this->estadocdt = $data['cdt'];
+        $this->estadocdt = $data['estadocdt'];
         $this->comentario = $data['comentario'];
         
     }

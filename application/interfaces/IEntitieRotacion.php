@@ -15,5 +15,5 @@ require_once '/../entities/ERotacion.php';
 
 interface IEntitieRotacion {
     
-    public function insertRotacion(ERotacion $rotacion);
+    public function insert_Rotacion(ERotacion $rotacion);
 }

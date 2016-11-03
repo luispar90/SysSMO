@@ -16,8 +16,12 @@ include_once '/../interfaces/IEntitieRotacion.php';
 
 class ModelRotacion extends CI_Model implements IEntitieRotacion {
     
+    public function __construct() {
+        parent::__construct();
+    }
+    
     //put your code here
-    public function insertRotacion(\ERotacion $rotacion) {
+    public function insert_Rotacion(\ERotacion $rotacion) {
         
         //armamos la data
     $data = array('p_Rol' => $rotacion->__get("rol"), 

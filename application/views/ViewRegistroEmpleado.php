@@ -155,7 +155,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtNombreRol">Nombre:</label>
-                                        <input type="text" class="form-control" id="txtNombreRol" name="txtNombreRol" readonly>
+                                        <input type="text" class="form-control" id="txtNombreRol" name="txtNombreRol" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -198,7 +198,8 @@
                                 </div>
                             </div>
                             <p class="pull-right">
-                                <button type="button" class="btn btn-primary nextBtn">Guardar</button>
+                                <button type="submit">Enviar</button>
+                                <button type="button" class="btn btn-primary nextBtn">Siguiente</button>
                             </p>
                         </div>
                     </form>
@@ -446,7 +447,7 @@
 
                 //Mostramos el mensaje
                 alert(data.mensaje);
-                //$("#frmAddRol").submit();
+                $("#frmAddRol").submit();
             },
             error: function(xhr, status, error){
                 alert(xhr.responseText);
@@ -455,11 +456,20 @@
         
     }));
     
-    $("#frmAddRol").on('submit', function (e){
+    $("#frmAddRol").submit(function (e){
         
+        //Validar el formulario
         e.preventDefault();
-        var data = $("#frmAddRol").serialize();
         
-        alert(data);
+        //Armamos la trama del Post
+        var url = "<?php echo site_url('rotacion/insertar')?>";
+
+        //Enviamos la data
+        $.post(url, $("#frmAddRol").serialize(), function(objJson){
+            
+            alert(objJson.mensaje);
+        }, 'json');
+        
+        
     });
 </script>

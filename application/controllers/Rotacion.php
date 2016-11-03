@@ -16,6 +16,8 @@ class Rotacion extends CI_Controller{
     public function __construct() {
         parent::__construct();
         $this->load->database();
+        $this->load->helper(array('form','url','html'));
+        $this->load->library('session');
 	$this->load->model('ModelRotacion');
     }
     
@@ -26,21 +28,21 @@ class Rotacion extends CI_Controller{
         
         //Capturamos los valores
         $data = array(
+            'rol' => trim($this->input->post('cboRol')),
             'empleado' => trim($this->input->post('txtCodEmpRol')),
-            'rol' => md5(trim($this->input->post('cboRol'))),
             'fecha' => trim($this->input->post('dtFechaRot')),
-            'motivo' => md5(trim($this->input->post('cboMotivoRol'))),
+            'motivo' => trim($this->input->post('cboMotivoRol')),
             'estadocdt' => trim($this->input->post('cboEstadoCdt')),
-            'comentario' => md5(trim($this->input->post('txtComentario')))
+            'comentario' => trim($this->input->post('txtComentario'))
         );
-        
+        //print_r($data); exit();
         try{
             
-            //Creamos un objeto usuario
-            $usuario = new EUsuario($data);
+            //Creamos un objeto rotacion
+            $rotacion = new ERotacion($data);
         
             //Invocamos el metodo
-            $result = $this->ModelUsuario->insert_User($usuario);
+            $result = $this->ModelRotacion->insert_Rotacion($rotacion);
             
             //Verificamos si hay filas afectadas
             if($result > 0){
@@ -48,20 +50,20 @@ class Rotacion extends CI_Controller{
                 //Construimos la variable de salida
                 $output = array(
                     "status" => TRUE,
-                    "mensaje" => "Usuario insertado correctamente"
+                    "mensaje" => "Rotacion registrado correctamente"
                 );
                 
             }else{
                 
                 //Construimos la variable de salida
-                throw new Exception("Error al insertar el usuario");
+                throw new Exception("Error al registrar la rotacion");
             }
             
         } catch (Exception $ex) {
             
             $output = array(
                 "status" => FALSE,
-                "mensaje" => "Error [".$ex->getCode()."]: ".$ex->getMessage()
+                "mensaje" => "Error Rotacion [".$ex->getCode()."]: ".$ex->getMessage()
             );
         }
         
