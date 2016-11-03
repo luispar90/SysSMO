@@ -21,7 +21,7 @@
             </div>
             <div>
                 <div class="row setup-content" id="step-1" style="margin-top: 25px">
-                    <form id="frmAddEmp" enctype="multipart/form-data">
+                    <form id="frmAddEmpleado" enctype="multipart/form-data">
                         <div class="col-sm-10 col-md-offset-1">
                             <div class="row" >        
                                 <div class="col-sm-6">
@@ -249,6 +249,12 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="txtComentarioPlaza">Comentario:</label>
+                                        <textarea id="txtComentarioPlaza" class="form-control" name="txtComentarioPlaza" style="resize: none;"></textarea>
+                                    </div>
+                                </div>
                                 <p class="pull-right">
                                     <button id="btnSaveEmp" type="button" class="btn btn-primary nextBtn">Guardar</button>
                                 </p>
@@ -415,11 +421,11 @@
         
         if(!v_ConPlaza){
             //Enviamos los formularios
-            $("#frmAddEmp").submit();
+            $("#frmAddEmpleado").submit();
         }
     });
     
-    $("#frmAddEmp").on('submit',(function(e){
+    $("#frmAddEmpleado").on('submit',(function(e){
         
         e.preventDefault();
         
@@ -439,7 +445,8 @@
             success: function(data){
 
                 //Mostramos el mensaje
-                alert(data);
+                alert(data.mensaje);
+                //$("#frmAddRol").submit();
             },
             error: function(xhr, status, error){
                 alert(xhr.responseText);
@@ -447,4 +454,12 @@
         });
         
     }));
+    
+    $("#frmAddRol").on('submit', function (e){
+        
+        e.preventDefault();
+        var data = $("#frmAddRol").serialize();
+        
+        alert(data);
+    });
 </script>
