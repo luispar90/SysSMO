@@ -190,6 +190,14 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="cboServicio">Servicio:</label>
+                                        <select class="form-control" id="cboServicio" name="cboServicio" required>
+                                            <option value="" selected>Seleccione...</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="txtComentario">Comentarios:</label>
@@ -230,6 +238,14 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
+                                        <label for="cboTorreOrg">Torre origen:</label>
+                                        <select class="form-control" id="cboTorreOrg" name="cboTorreOrg" disabled>
+                                            <option value="" selected>No hay plaza seleccionada</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
                                         <label for="cboMotivoPlaza">Motivo:</label>
                                         <select class="form-control" id="cboMotivoPlaza" name="cboMotivoPlaza">
                                             <option value="" selected>Seleccione...</option>
@@ -238,16 +254,16 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="dtFechaAsig">Fecha de asignación:</label>
-                                        <input type="date" class="form-control" id="dtFechaAsig" name="dtFechaAsig" value="<?php echo date("Y-m-d");?>">
+                                        <label for="cboTorreSol">Torre necesidad:</label>
+                                        <select class="form-control" id="cboTorreSol" name="cboTorreSol">
+                                            <option value="" selected>Seleccione...</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="cboTorreSol">Torre solicitante:</label>
-                                        <select class="form-control" id="cboTorreSol" name="cboTorreSol">
-                                            <option value="" selected>Seleccione...</option>
-                                        </select>
+                                        <label for="dtFechaAsig">Fecha de asignación:</label>
+                                        <input type="date" class="form-control" id="dtFechaAsig" name="dtFechaAsig" value="<?php echo date("Y-m-d");?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
@@ -285,7 +301,7 @@
             var $target = $($(this).attr('href')),
                     $item = $(this);
 
-            if (!$item.hasClass('disabled')) {
+            if (!$item.attr('disabled')) {
                 navListItems.removeClass('btn-primary').addClass('btn-default');
                 $item.addClass('btn-primary');
                 allWells.hide();
@@ -369,7 +385,9 @@
             for (var x = 0; x < objJson.count; x++){
                 options += '<option value="' + objJson.data[x]['CODIGO'] + '">' + objJson.data[x]['NOMBRE'] + '</option>';
             }
+            $("#cboTorreOrg").append(options);
             $("#cboTorreSol").append(options);
+            $("#cboServicio").append(options); 
         }, 'json');
         
         //Llenamos las plazas
@@ -428,6 +446,22 @@
             $("#cboPlaza").removeAttr("required", "required");
             v_ConPlaza = false;
         }
+    });
+    
+    //Seleccionar la torre por defecto
+    $("#cboPlaza").change(function (){
+        
+        var v_CodPlaza = $("#cboPlaza").val();
+        
+        //URL para el registro de nuevo empleado
+        var url = "<?php echo site_url('empleado/getTorreByPlaza') ?>/" + v_CodPlaza;
+        var data = "";
+        
+        $.post(url, data, function (objJson){
+            //console.log(objJson.torre['TORRE']);
+            $("#cboTorreOrg").val(objJson.torre['TORRE']); 
+            $("#cboTorreSol").val(objJson.torre['TORRE']);
+        }, 'json');
     });
     
     $("#btnSaveEmp").click(function (e){

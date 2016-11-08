@@ -18,6 +18,7 @@ class ERotacion {
     private $fecha;
     private $motivo;
     private $estadocdt;
+    private $servicio;
     private $comentario;
     
     public function __construct($data = null) {
@@ -27,6 +28,7 @@ class ERotacion {
         $this->fecha = $data['fecha'];
         $this->motivo = $data['motivo'];
         $this->estadocdt = $data['estadocdt'];
+        $this->servicio = $data['servicio'];
         $this->comentario = $data['comentario'];
         
     }

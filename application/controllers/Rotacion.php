@@ -33,6 +33,7 @@ class Rotacion extends CI_Controller{
             'fecha' => trim($this->input->post('dtFechaRot')),
             'motivo' => trim($this->input->post('cboMotivoRol')),
             'estadocdt' => trim($this->input->post('cboEstadoCdt')),
+            'servicio' => $this->input->post('cboServicio'),
             'comentario' => trim($this->input->post('txtComentario'))
         );
         //print_r($data); exit();

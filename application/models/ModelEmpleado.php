@@ -343,6 +343,18 @@ class ModelEmpleado extends CI_Model implements IEntitieEmpleado{
         return $query->result();
     }
     
+    public function getTorreByPlaza($codplaza) {
+        
+        $this->db->reconnect();
+        
+        $this->db->select('TORRE');
+        $this->db->where('CODIGO', $codplaza);
+        $query = $this->db->get('vw_listaplazas');
+        $this->db->close();
+        
+        return $query->row();
+    }
+    
     public function GetEmpleadoByCodigo($codigo){
         
         $data = array('p_Codigo' => $codigo);

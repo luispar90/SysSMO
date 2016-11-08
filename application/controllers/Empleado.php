@@ -361,4 +361,12 @@ class Empleado extends CI_Controller {
         $data = array('count' => count($empleado), 'data' => $empleado);
         echo json_encode($data);
     }
+    
+    public function getTorreByPlaza($codplaza) {
+        
+        $data = $this->ModelEmpleado->getTorreByPlaza($codplaza);
+        $output = array("status" => TRUE, "torre" => $data);
+        
+        echo json_encode($output);
+    }
 }
