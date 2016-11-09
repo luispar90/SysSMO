@@ -17,7 +17,7 @@
         <link href="/SysSMO/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
         <link href="/SysSMO/assets/css/sticky-footer-navbar.css" rel="stylesheet">
         <link href="/SysSMO/assets/css/clock.css" rel="stylesheet" type="text/css"/>
-        
+        <link href="/SysSMO/assets/css/dropzone.css" rel="stylesheet" type="text/css"/>
     </head>
 
   <body>
@@ -144,6 +144,7 @@
         <script src="/SysSMO/assets/js/moment.min.js" type="text/javascript"></script>
         <script src="/SysSMO/assets/js/script.js" type="text/javascript"></script>
         <script src="/SysSMO/assets/js/pwstrength.js" type="text/javascript"></script>
+        <script src="/SysSMO/assets/js/dropzone.js" type="text/javascript"></script>
         <script>
             
             //Personalizar el footer al cargar la pagina
