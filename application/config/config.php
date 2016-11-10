@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$config['base_url'] = 'http://192.168.100.111:8081/SysSMO/';
+$config['base_url'] = 'http://192.168.100.94:8081/SysSMO/';
 
 /*
 |--------------------------------------------------------------------------

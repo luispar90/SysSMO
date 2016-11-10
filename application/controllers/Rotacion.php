@@ -28,11 +28,11 @@ class Rotacion extends CI_Controller{
         
         //Capturamos los valores
         $data = array(
-            'rol' => trim($this->input->post('cboRol')),
+            'rol' => $this->input->post('cboRol'),
             'empleado' => trim($this->input->post('txtCodEmpRol')),
-            'fecha' => trim($this->input->post('dtFechaRot')),
-            'motivo' => trim($this->input->post('cboMotivoRol')),
-            'estadocdt' => trim($this->input->post('cboEstadoCdt')),
+            'fecha' => $this->input->post('dtFechaRot'),
+            'motivo' => $this->input->post('cboMotivoRol'),
+            'estadocdt' => $this->input->post('cboEstadoCdt'),
             'servicio' => $this->input->post('cboServicio'),
             'comentario' => trim($this->input->post('txtComentario'))
         );
@@ -67,7 +67,7 @@ class Rotacion extends CI_Controller{
                 "mensaje" => "Error Rotacion [".$ex->getCode()."]: ".$ex->getMessage()
             );
         }
-        
+
         //Enviamos la respuesta en formato JSON
         echo json_encode($output);
     }

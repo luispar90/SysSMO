@@ -24,14 +24,15 @@ class ModelRotacion extends CI_Model implements IEntitieRotacion {
     public function insert_Rotacion(\ERotacion $rotacion) {
         
         //armamos la data
-    $data = array('p_Rol' => $rotacion->__get("rol"), 
+        $data = array('p_Rol' => $rotacion->__get("rol"), 
                     'p_Empleado' => $rotacion->__get("empleado"), 
                     'p_Fecha' => $rotacion->__get("fecha"), 
                     'p_Motivo' => $rotacion->__get("motivo"), 
                     'p_EstadoCdt' => $rotacion->__get("estadocdt"), 
-                    'p_Comentario' => $rotacion->__get("comentario"));
+                    'p_Comentario' => $rotacion->__get("comentario"),
+                    'p_Servicio' => $rotacion->__get("servicio"));
 
-        $query = "call spi_InsertarRotacion(?, ?, ?, ?, ?, ?)";
+        $query = "call spi_InsertarRotacion(?, ?, ?, ?, ?, ?, ?)";
         
         try{
             

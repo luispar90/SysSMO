@@ -177,7 +177,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="dtFechaRot">Fecha de rotación:</label>
-                                        <input type="date" class="form-control" id="dtFechaRot" name="dtFechaRot" required>
+                                        <input type="date" class="form-control" id="dtFechaRot" name="dtFechaRot" value="<?php echo date("Y-m-d");?>" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -206,7 +206,7 @@
                                 </div>
                             </div>
                             <p class="pull-right">
-                                <button type="submit">Enviar</button>
+                                <button type="submit" class="btn btn-default">Enviar</button>
                                 <button type="button" class="btn btn-primary nextBtn">Siguiente</button>
                             </p>
                         </div>
@@ -277,10 +277,42 @@
                                 </p>
                           </div>
                     </form>
-                    
                 </div>
             </div>
+            <div id="dvAlert" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Mensaje</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="pMensaje"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
             
+            <div id="dvConfirm" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Aviso</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="pMensajeConfirm"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button id="btnDvConfirm" type="button" class="btn btn-primary"></button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 <script>
     
     //variable
@@ -423,6 +455,14 @@
         $("#txtCtaE").val("E12356");
     }
     
+    function resetear_formularios(){
+        
+        //Reseteamos los formularios
+        $("#frmAddEmpleado")[0].reset();
+        $("#frmAddRol")[0].reset();
+        $("#frmAddPlaza")[0].reset();
+    }
+    
     //Insertamos los datos
     $( "#cboMotivoPlaza").change(function() {
         
@@ -493,16 +533,23 @@
             processData:false,
             success: function(data){
 
-                //Mostramos el mensaje
-                alert(data.mensaje);
-                
                 if(data.status){
+                    
+                    //Agregamos los roles
                     $("#frmAddRol").submit();
+                }else{
+                    
+                    //Mostramos el mensaje de error
+                    $("#dvAlert").modal("show");
+                    $("#pMensaje").html(data.mensaje);
                 }
                 
             },
             error: function(xhr, status, error){
-                alert(xhr.responseText);
+
+                //Mostramos el mensaje de error
+                $("#dvAlert").modal("show");
+                $("#pMensaje").html("<p>Estado: " + status + "</p><p>Error: "+ error + "</p><p>" + xhr.responseText + "</p>");
             }           
         });
         
@@ -514,12 +561,19 @@
         e.preventDefault();
         
         //Armamos la trama del Post
-        var url = "<?php echo site_url('rotacion/insertar')?>";
+        var url = "<?php echo site_url('rotacion/insertar') ?>";
+        var data = $("#frmAddRol").serialize();
 
         //Enviamos la data
-        $.post(url, $("#frmAddRol").serialize(), function(objJson){
+        $.post(url, data, function(objJson){
             
-            alert(objJson.mensaje);
+            if(!v_ConPlaza){
+                
+                $("#dvAlert").modal("show");
+                $("#pMensaje").html(objJson.mensaje);
+                resetear_formularios();
+                return;
+            } 
             
             if(objJson.status && v_ConPlaza){
                 $("#frmAddPlaza").submit();
@@ -538,8 +592,12 @@
         var url = "<?php echo site_url('plaza/insertar')?>";
         var data = $("#frmAddPlaza").serialize();
         
-        $.post(url, data, function (e){
-            alert(e.mensaje);
+        $.post(url, data, function (objJson){
+            
+            $("#dvAlert").modal("show");
+            $("#pMensaje").html(objJson.mensaje);
+            resetear_formularios();
+            
         }, 'json');
     });
     
