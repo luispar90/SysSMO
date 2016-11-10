@@ -11,7 +11,7 @@
  *
  * @author lparagua
  */
-class Rotacion extends CI_Controller{
+class Rotacion extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
@@ -36,7 +36,7 @@ class Rotacion extends CI_Controller{
             'servicio' => $this->input->post('cboServicio'),
             'comentario' => trim($this->input->post('txtComentario'))
         );
-        //print_r($data); exit();
+        print_r($this->input->post()); exit();
         try{
             
             //Creamos un objeto rotacion

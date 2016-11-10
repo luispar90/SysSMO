@@ -565,7 +565,7 @@
         var data = $("#frmAddRol").serialize();
 
         //Enviamos la data
-        $.post(url, data, function(objJson){
+        $.post(url, $("#frmAddRol").serialize(), function(objJson){
             
             if(!v_ConPlaza){
                 
