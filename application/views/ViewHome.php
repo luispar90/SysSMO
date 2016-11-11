@@ -17,7 +17,6 @@
         <link href="/SysSMO/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
         <link href="/SysSMO/assets/css/sticky-footer-navbar.css" rel="stylesheet">
         <link href="/SysSMO/assets/css/clock.css" rel="stylesheet" type="text/css"/>
-        <link href="/SysSMO/assets/css/dropzone.css" rel="stylesheet" type="text/css"/>
     </head>
 
   <body>
@@ -54,7 +53,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:cargarPagina('verEmpleados')">Empleados</a></li>
                                 <li><a href="#">Another action</a></li>
-                                <li><a href="javascript:cargarPagina('perfil')">Pefil</a></li>
+                                <li><a href="javascript:cargarPagina('perfil')">Mi Pefil</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>
                                 <li><a href="#">Separated link</a></li>

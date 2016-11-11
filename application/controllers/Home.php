@@ -56,4 +56,8 @@ class Home extends CI_Controller{
     public function inicio() {
         redirect('home/index');
     }
+    
+    public function prueba() {
+        $this->load->view('ViewRegEmpleado');
+    }
 }

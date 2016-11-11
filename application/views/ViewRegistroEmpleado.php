@@ -225,7 +225,7 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="txtNomComp">Nombre:</label>
-                                        <input type="text" class="form-control" id="txtNomComp" name="txtNomComp" autocomplete="off" readonly>
+                                        <input type="text" class="form-control" id="txtNomComp" name="txtNomComp" autocomplete="off" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -491,14 +491,17 @@
     //Seleccionar la torre por defecto
     $("#cboPlaza").change(function (){
         
+        //Capturamos el valor de la plaza
         var v_CodPlaza = $("#cboPlaza").val();
         
         //URL para el registro de nuevo empleado
         var url = "<?php echo site_url('empleado/getTorreByPlaza') ?>/" + v_CodPlaza;
         var data = "";
         
+        //Enviamos la data mediante POST
         $.post(url, data, function (objJson){
-            //console.log(objJson.torre['TORRE']);
+            
+            //Llenamos los combos de las torres
             $("#cboTorreOrg").val(objJson.torre['TORRE']); 
             $("#cboTorreSol").val(objJson.torre['TORRE']);
         }, 'json');
@@ -506,9 +509,12 @@
     
     $("#btnSaveEmp").click(function (e){
         
+        //Evitamos que se ejecute el evento por defecto
         e.preventDefault();
         
+        //Validamos si hay datos ingresados para la plaza
         if(!v_ConPlaza){
+            
             //Enviamos los formularios
             $("#frmAddEmpleado").submit();
         }
@@ -563,24 +569,33 @@
         //Armamos la trama del Post
         var url = "<?php echo site_url('rotacion/insertar') ?>";
         var data = $("#frmAddRol").serialize();
-
-        //Enviamos la data
-        $.post(url, $("#frmAddRol").serialize(), function(objJson){
-            
-            if(!v_ConPlaza){
+        
+        $.ajax({
+            url: url,
+            type: "POST",
+            data:  data,
+            dataType: "json",
+            success: function(data){
                 
+                if(!v_ConPlaza){
+                
+                    $("#dvAlert").modal("show");
+                    $("#pMensaje").html(data.mensaje);
+                    resetear_formularios();
+                    return;
+                }
+                
+                if(data.status && v_ConPlaza){
+                    $("#frmAddPlaza").submit();
+                }
+            },
+            error: function(xhr, status, error){
+
+                //Mostramos el mensaje de error
                 $("#dvAlert").modal("show");
-                $("#pMensaje").html(objJson.mensaje);
-                resetear_formularios();
-                return;
-            } 
-            
-            if(objJson.status && v_ConPlaza){
-                $("#frmAddPlaza").submit();
+                $("#pMensaje").html("<p>Estado: " + status + "</p><p>Error: "+ error + "</p><p>" + xhr.responseText + "</p>");
             }
-        }, 'json');
-        
-        
+        });  
     });
     
     $("#frmAddPlaza").submit(function (e){
@@ -589,16 +604,28 @@
         e.preventDefault();
         
         //Capturamos los datos
-        var url = "<?php echo site_url('plaza/insertar')?>";
+        var url = "<?php echo site_url('HistorialPlaza/insertar')?>";
         var data = $("#frmAddPlaza").serialize();
         
-        $.post(url, data, function (objJson){
-            
-            $("#dvAlert").modal("show");
-            $("#pMensaje").html(objJson.mensaje);
-            resetear_formularios();
-            
-        }, 'json');
+        $.ajax({
+            url: url,
+            data: data,
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                
+                $("#dvAlert").modal("show");
+                $("#pMensaje").html(data.mensaje);
+                resetear_formularios();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                
+                //Mostramos el mensaje de error
+                $("#dvAlert").modal("show");
+                $("#pMensaje").html("<p>Estado: " + textStatus + "</p><p>Error: "+ errorThrown + "</p><p>" + jqXHR.responseText + "</p>");
+            }
+        });
+
     });
     
 </script>

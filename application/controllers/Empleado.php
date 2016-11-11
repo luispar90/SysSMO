@@ -20,7 +20,6 @@ class Empleado extends CI_Controller {
 	$this->load->library(array('session', 'form_validation'));
 	$this->load->database();
 	$this->load->model('ModelEmpleado');
-        $this->load->helper(array('form', 'url'));
     }
     
     public function insertar() {
@@ -39,7 +38,7 @@ class Empleado extends CI_Controller {
         $tipoDoc = $this->input->post('cboTipoDoc');
         $nroDoc = $this->input->post('txtNumDoc');
         $telefono = $this->input->post('txtTelefono');
-        $fechaNac = date('Y-m-d', strtotime($this->input->post('dtFechaNac'))); //$this->input->post('dtFechaNac');
+        $fechaNac = date('Y-m-d', strtotime($this->input->post('dtFechaNac')));
         $estado = $this->input->post('cboEstado');
         $usuarioEveris = $this->input->post('txtUsuarioEveris');
         $cuentaE = $this->input->post('txtCtaE');
