@@ -17,9 +17,9 @@ class EAsistencia {
     private $codigo_emp;
     private $usu_emp;
     private $tipo;
-    private $fecha;
-    private $hora;
-    private $estado;
+    //private $fecha;
+    //private $hora;
+    //private $estado;
     private $ip;
     
     public function __construct($data = null) {
