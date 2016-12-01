@@ -230,8 +230,8 @@
                 //Set column definition initialisation properties.
                 "columnDefs": [
                     { 
-                        "className" : 'details-control',
-                        "targets": [ 0 ], //last column
+                        "className" : 'details-control dt-center',
+                        "targets": "_all", //last column
                         "orderable": false, //set not orderable
                     }
                 ]

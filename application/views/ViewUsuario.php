@@ -168,7 +168,8 @@
             //Set column definition initialisation properties.
             "columnDefs": [
                 { 
-                    "targets": [ -1 ], //last column
+                    "className": "dt-center",
+                    "targets": "_all", //last column
                     "orderable": false, //set not orderable
                 }
             ],
