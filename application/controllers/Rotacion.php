@@ -36,7 +36,7 @@ class Rotacion extends CI_Controller{
             'servicio' => $this->input->post('cboServicio'),
             'comentario' => trim($this->input->post('txtComentario'))
         );
-        //print_r($data); exit();
+
         try{
             
             //Creamos un objeto rotacion
@@ -71,4 +71,5 @@ class Rotacion extends CI_Controller{
         //Enviamos la respuesta en formato JSON
         echo json_encode($output);
     }
+    
 }

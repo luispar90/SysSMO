@@ -323,6 +323,52 @@ class Empleado extends CI_Controller {
         }
     }
     
+    public function getAllRotacion() {
+        
+         //Declaramos variables
+        $list = $this->ModelEmpleado->get_Datatables();
+        $data = array();
+        $nro = $_POST['start'];
+        
+        try{
+            
+            $uresult = $this->ModelEmpleado->get_All();
+
+            if(count($uresult) > 0){
+                
+                foreach ($list as $user) {
+                    
+                    $nro++;
+                    $row = array();
+                    $row[] = $user->Codigo;
+                    $row[] = $user->Codigo_Empleado;
+                    $row[] = $user->Nombre;
+                    $row[] = $user->Tipo_Documento;
+                    $row[] = $user->Numero_Documento;
+                    $row[] = $user->Estado;
+                    //HTML para las acciones de eliminar y editar data-toggle="tooltip" data-placement="bottom"
+                    $row[] = '<a class="btn btn-sm btn-primary" title="Editar" onclick="editar_empleado('."'".$user->Codigo."'".')"><i class="glyphicon glyphicon-edit"></i> Rotación</a>';
+
+                    $data[] = $row;
+                }
+            }
+            
+            $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->ModelEmpleado->get_CountAll(),
+                        "recordsFiltered" => $this->ModelEmpleado->get_CountFiltered(),
+                        "data" => $data,
+                );
+            
+            //output to json format
+            echo json_encode($output);
+            
+        } catch (Exception $ex) {
+            
+            echo $ex->getMessage();
+        }
+    }
+    
     public function editar($codigo) {
         
         $uresult = $this->ModelEmpleado->get_EmployeeById($codigo);

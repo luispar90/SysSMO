@@ -45,7 +45,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:cargarPagina('registroEmpleado')">Colaborador</a></li>
-                                <li><a href="javascript:cargarPagina('registroEmpleado')">Rotacion</a></li>
+                                <li><a href="javascript:cargarPagina('verRotacion')">Rotacion</a></li>
                             </ul>
                         </li>
 
