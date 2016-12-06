@@ -36,12 +36,21 @@
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul id="dvSubMenu" class="nav navbar-nav">
                         <li class="active"><a href="/SysSMO/home/home">Home</a></li>
-                        <li><a href="javascript:cargarPagina('verUsuarios')">Usuarios</a></li>
                         <li><a href="javascript:cargarPagina('verAsistencia')">Asistencia</a></li>
-                        <!-- JECL Rotacion de personal -->
-                        <li><a href="javascript:cargarPagina('verRotacion')">Rotacion</a></li>
-                        <!-- LEPA Registro de empleado -->
-                        <li><a href="javascript:cargarPagina('registroEmpleado')">Rotacion</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+                               aria-expanded="false">
+                                Nuevo
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:cargarPagina('registroEmpleado')">Colaborador</a></li>
+                                <li><a href="javascript:cargarPagina('registroEmpleado')">Rotacion</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- JECL Rotacion de personal 
+                        <li><a href="javascript:cargarPagina('verRotacion')">Rotacion</a></li>-->
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
@@ -52,11 +61,11 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:cargarPagina('verEmpleados')">Empleados</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="javascript:cargarPagina('perfil')">Mi Pefil</a></li>
+                                <li><a href="javascript:cargarPagina('verUsuarios')">Usuarios</a></li>
+                                <li><a href="javascript:cargarPagina('verAsistencia')">Mis asistencia</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="javascript:cargarPagina('perfil')">Mi Pefil</a></li>
                                 <li><a href="/SysSMO/usuario/logout">Cerrar sesión</a></li>
                             </ul>
                         </li>
