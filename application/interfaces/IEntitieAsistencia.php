@@ -18,7 +18,9 @@ interface IEntitieAsistencia {
     //put your code here
     function insertAsistencia(EAsistencia $asist);
     function get_All();
-    
+    function get_ByUser($usuario);
+
+
     //Funciones de tabla
     function get_Datatables_query();
     function get_Datatables();

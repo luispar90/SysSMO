@@ -62,7 +62,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="javascript:cargarPagina('verEmpleados')">Empleados</a></li>
                                 <li><a href="javascript:cargarPagina('verUsuarios')">Usuarios</a></li>
-                                <li><a href="javascript:cargarPagina('verAsistencia')">Mis asistencia</a></li>
+                                <li><a href="javascript:cargarPagina('verMisAsistencia')">Mis asistencia</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li class="dropdown-header">Nav header</li>
                                 <li><a href="javascript:cargarPagina('perfil')">Mi Pefil</a></li>

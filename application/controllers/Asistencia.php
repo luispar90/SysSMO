@@ -103,6 +103,50 @@ class Asistencia extends CI_Controller{
         }
     }
     
+    public function getByUser() {
+               
+        $usuario = $this->session->userdata('usuario_ss');
+        $nro = $_POST['start'];
+        $data = array();
+        
+        try{
+            
+            $uresult = $this->ModelAsistencia->get_ByUser($usuario);
+
+            if(count($uresult) > 0){
+                
+                foreach ($uresult as $asist) {
+                    
+                    $nro++;
+                    $row = array();
+                    $row[] = $asist->ID_REGISTRO;
+                    $row[] = $asist->COD_EMPLEADO;
+                    $row[] = $asist->USUARIO;
+                    $row[] = $asist->FECHA;
+                    $row[] = $asist->TIPO_HORA;
+                    $row[] = $asist->HORA;
+                    $row[] = $asist->ESTADO;
+                    
+                    $data[] = $row;
+                }
+            }
+            
+            $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->ModelAsistencia->get_CountAll(),
+                        "recordsFiltered" => $this->ModelAsistencia->get_CountFiltered(),
+                        "data" => $data,
+                );
+            
+            //output to json format
+            echo json_encode($output);
+            
+        } catch (Exception $ex) {
+            
+            echo $ex->getMessage();
+        }
+    }
+    
     // Function to get the client IP address
     function get_client_ip() {
         

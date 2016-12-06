@@ -205,4 +205,28 @@ class ModelAsistencia extends CI_Model implements IEntitieAsistencia{
         }
     }
 
+    public function get_ByUser($usuario) {
+        
+        //armamos la data
+        $data = array('p_NombreUsuario' => $usuario);
+        $query = "call sps_ListaAsistencia(?)";
+        
+        try{
+            
+            //Ejecutamos la consulta
+            $this->db->reconnect();
+            $result = $this->db->query($query, $data);
+            
+            
+        } catch (Exception $ex) {
+            
+            echo $ex->getMessage();
+            
+        }  finally {
+            
+            $this->db->close();
+            return $result->result();
+        } 
+    }
+
 }
