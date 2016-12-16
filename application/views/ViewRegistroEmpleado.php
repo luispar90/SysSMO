@@ -10,11 +10,11 @@
                         </div>
                         <div class="stepwizard-step">
                             <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                            <p>Asígnale un rol</p>
+                            <p>Asignación de roles</p>
                         </div>
                         <div class="stepwizard-step">
                             <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
-                            <p>Asígnale una plaza</p>
+                            <p>Asignación de plazas</p>
                         </div>
                     </div>
                 </div>
