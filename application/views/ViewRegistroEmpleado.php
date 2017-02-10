@@ -10,10 +10,14 @@
                         </div>
                         <div class="stepwizard-step">
                             <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
-                            <p>Asignación de roles</p>
+                            <p>Herramientas de trabajo</p>
                         </div>
                         <div class="stepwizard-step">
                             <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+                            <p>Asignación de roles</p>
+                        </div>
+                        <div class="stepwizard-step">
+                            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a>
                             <p>Asignación de plazas</p>
                         </div>
                     </div>
@@ -143,6 +147,35 @@
                 </div>
 
                 <div class="row setup-content" id="step-2" style="margin-top: 25px">
+                    <form id="frmAddTools">
+                        <div class="col-sm-10 col-md-offset-1">
+                            <p class="lead">Seleccione las herramientas de trabajo</p>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chkInternetOlo"> Internet OLO
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="chkInternetOlo"> Acceso a Withlist
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="pull-right">
+                                <button type="button" class="btn btn-default" onclick="test();">Llenar datos</button>
+                                <button type="button" class="btn btn-primary nextBtn">Siguiente</button>
+                            </p>
+                        </div>
+                    </form>
+                    
+                </div>
+                
+                <div class="row setup-content" id="step-3" style="margin-top: 25px">
                     <form id="frmAddRol">
                         <div class="col-sm-10 col-md-offset-1">
                             <div class="row">        
@@ -213,7 +246,7 @@
                     </form>
                 </div>
 
-                <div class="row setup-content" id="step-3" style="margin-top: 25px">
+                <div class="row setup-content" id="step-4" style="margin-top: 25px">
                     <form id="frmAddPlaza">
                         <div class="col-sm-10 col-md-offset-1">
                             <div class="col-sm-6">

@@ -89,12 +89,3 @@
     line-height: 1.428571429;
     border-radius: 15px;
 }
-
-@media (max-width: 767px) {
-
-    .stepwizard{   
-        width: 90%;
-        margin-left: 10px;
-    }
-
-}
